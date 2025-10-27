@@ -25,7 +25,19 @@
 	--tertiary: hsl(37.7 92.1% 50.2%);
 	--line: hsl(0 0% 100%);
 
+	--text: hsl(12, 6%, 15%);
+
+	--button-default-hover: hsl(30, 7%, 24%);
+	--button-default-hover-shadow: 0 1px 4px 1px hsl(12, 6%, 15%);
+
     --button-primary: hsl(31 96% 78%);
+    --button-primary-hover: hsl(31, 98%, 82%);
+    --button-primary-hover-shadow: 0 1px 4px 1px rgba(247, 198, 146, 0.37);
+
+    --button-secondary-hover:	hsl(111, 12%, 88%);
+    --button-secondary-hover-shadow:  hsl(111, 12%, 88%, 0.35);
+
+    --button-ghost-hover: hsl(33, 52%, 92%);
     --button-secondary: hsl(108 8% 77%);
     --button-danger: hsl(347 60% 50%);
 
@@ -97,10 +109,24 @@
 	--color-tertiary: var(--tertiary);
 	--color-line: var(--line);
 	--color-contrast: var(--contrast);
+	--color-foreground: var(--text);
+
+	--color-button-default-hover: var(--button-default-hover);
 
     --color-button-primary: var(--button-primary);
+    --color-button-primary-hover: var(--button-primary-hover);
+
+    --color-button-ghost-hover: var(--button-ghost-hover);
+
     --color-button-secondary: var(--button-secondary);
+    --color-button-secondary-hover: var(--button-secondary-hover);
+    --shadow-button-secondary-hover: var(--button-secondary-hover-shadow);
+
     --color-button-danger: var(--button-danger);
+
+    --shadow-button-primary-hover: var(--button-primary-hover-shadow);
+
+    --shadow-button-default-hover: var(--shadow-button-default-hover);
 
 	--shadow-mini: var(--shadow-mini);
 	--shadow-mini-inset: var(--shadow-mini-inset);
@@ -305,4 +331,12 @@
 
 body {
     font-family: "Space Grotesk", sans-serif;
+}
+
+.scale-3d {
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: antialiased;
+    transform: translate3d(0, 0, 0);
 }

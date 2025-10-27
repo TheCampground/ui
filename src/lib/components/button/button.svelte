@@ -5,13 +5,13 @@
     import { page } from "$app/state"
 
     export const buttonVariants = tv({
-        base: "rounded-input inline-flex items-center justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98] transition-all cursor-pointer",
+        base: "rounded-input inline-flex items-center scale-3d justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 active:scale-[0.98] will-change-scale disabled:cursor-not-allowed transition-all cursor-pointer text-foreground",
         variants: {
             variant: {
-                default: "bg-dark text-background shadow-mini hover:bg-dark/95",
-                primary: "bg-button-primary text-black",
-                secondary: "bg-button-secondary text-black",
-                ghost: "hover:bg-button-secondary text-black",
+                default: "bg-dark text-background shadow-mini hover:bg-button-default-hover hover:shadow-button-default-hove active:bg-dark",
+                primary: "bg-button-primary hover:bg-button-primary-hover hover:shadow-button-primary-hover active:bg-button-primary",
+                secondary: "bg-button-secondary hover:bg-button-secondary-hover hover:shadow-button-secondary-hover active:bg-button-secondary",
+                ghost: "hover:bg-button-ghost-hover",
                 danger: "bg-button-danger text-white",
                 link: "hover:underline"
             },
