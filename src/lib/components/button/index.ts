@@ -1,5 +1,14 @@
-import { default as Button } from "./button.svelte"
+import Button, {
+    buttonVariants,
+    type ButtonProps,
+    type ButtonSize,
+    type ButtonVariant
+} from "./button.svelte"
 
 export {
-    Button
+  Button,
+  buttonVariants,
+  type ButtonProps,
+  type ButtonSize,
+  type ButtonVariant,
 }

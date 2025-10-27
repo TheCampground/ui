@@ -11,6 +11,7 @@ const config = {
 	kit: {
         adapter: adapter(),
 		alias: {
+		    "@internal": path.resolve("./src/lib/internal"),
 			"@core": path.resolve("./src/lib/components")
 		}
 	}

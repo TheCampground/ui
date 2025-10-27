@@ -2,11 +2,16 @@
 	import "../app.css"
     import "@fontsource-variable/space-grotesk"
 
+	import { Sidebar } from "@internal/sidebar/index.ts"
+    import { Nav } from "@internal/nav/index.ts"
+
 	let { children } = $props()
 </script>
 
-<div class="p-4 flex flex-col items-center justify-center w-full lg:h-full my-0 md:my-5">
-    <div class="flex flex-col gap-6 items-center justify-center max-w-[750px] w-full">
+<Nav />
+<div class="flex flex-row">
+    <Sidebar />
+    <div class="flex grow flex-1 w-full h-screen p-10 overflow-auto">
         {@render children?.()}
     </div>
 </div>

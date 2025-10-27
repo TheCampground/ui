@@ -1,15 +1,17 @@
 <script lang="ts" module>
-    import { cn, type WithElementRef } from "$lib/utils.js"
     import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements"
     import { type VariantProps, tv } from "tailwind-variants"
+    import { cn, type WithElementRef } from "$lib/utils.js"
+    import { page } from "$app/state"
 
     export const buttonVariants = tv({
-        base: "rounded-input inline-flex items-center justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98] active:transition-all cursor-pointer",
+        base: "rounded-input inline-flex items-center justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98] transition-all cursor-pointer",
         variants: {
             variant: {
                 default: "bg-dark text-background shadow-mini hover:bg-dark/95",
                 primary: "bg-button-primary text-black",
                 secondary: "bg-button-secondary text-black",
+                ghost: "hover:bg-button-secondary text-black",
                 danger: "bg-button-danger text-white",
                 link: "hover:underline"
             },
@@ -54,7 +56,7 @@
     <a
         bind:this={ref}
         class={cn(buttonVariants({ variant, size }), className)}
-        href={disabled ? undefined : href}
+        href={disabled ? page.url.pathname : href}
         aria-disabled={disabled}
         role={disabled ? "link" : undefined}
         tabindex={disabled ? -1 : undefined}
