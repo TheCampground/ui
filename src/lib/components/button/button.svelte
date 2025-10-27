@@ -5,7 +5,7 @@
     import { page } from "$app/state"
 
     export const buttonVariants = tv({
-        base: "rounded-input inline-flex items-center scale-3d justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 active:scale-[0.98] will-change-scale disabled:cursor-not-allowed transition-all cursor-pointer text-foreground",
+        base: "rounded-input inline-flex items-center scale-3d justify-center text-sm font-semibold disabled:pointer-events-none disabled:opacity-70 active:scale-[0.992] will-change-scale disabled:cursor-not-allowed transition-all cursor-pointer text-foreground",
         variants: {
             variant: {
                 default: "bg-dark text-background shadow-mini hover:bg-button-default-hover hover:shadow-button-default-hove active:bg-dark",

@@ -38,7 +38,7 @@
     --button-secondary-hover-shadow:  hsl(111, 12%, 88%, 0.35);
 
     --button-ghost-hover: hsl(33, 52%, 92%);
-    --button-secondary: hsl(108 8% 77%);
+    --button-secondary: hsl(86, 13%, 90%);
     --button-danger: hsl(347 60% 50%);
 
 	/* black */
@@ -311,8 +311,7 @@
 	}
 
 	::selection {
-		background: #fdffa4;
-		color: black;
+        @apply bg-button-primary text-foreground;
 	}
 }
 
@@ -344,4 +343,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	font-smoothing: antialiased;
     transform: translate3d(0, 0, 0);
+}
+
+pre.shiki {
+    @apply p-2 text-sm whitespace-break-spaces;
 }

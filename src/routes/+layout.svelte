@@ -9,9 +9,11 @@
 </script>
 
 <Nav />
-<div class="flex flex-row">
+<div class="flex flex-row h-full">
     <Sidebar />
-    <div class="flex grow flex-1 w-full h-screen p-10 overflow-auto">
-        {@render children?.()}
+    <div class="my-14 px-5 py-5 md:py-10 w-full flex justify-center overflow-y-auto">
+        <div class="w-full md:w-[60%] flex">
+            {@render children?.()}
+        </div>
     </div>
 </div>

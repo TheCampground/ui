@@ -1,57 +1,46 @@
 import { Compass, Sticker } from "@steeze-ui/phosphor-icons"
 import type { IconSource } from "@steeze-ui/svelte-icon"
 
-type RouteItem = {
+export type RouteItem = {
     name: string
     path: string
-    icon?: IconSource | null
+    icon?: IconSource
 }
-
-type RouteAsSeparator = {
-    separator: true
-    title?: never
-    items?: never
-}
-type RouteAsPage = {
-    separator?: never
+export type Route = {
     title: string
     items: RouteItem[]
 }
 
-type Routes = (RouteAsSeparator | RouteAsPage)[]
+export const docs = {
+    title: "Docs",
+    items: [
+        {
+            name: "Introduction",
+            path: "/docs/introduction",
+            icon: Sticker
+        },
+        {
+            name: "Getting Started",
+            path: "/docs/getting-started",
+            icon: Compass
+        }
+    ]
+} satisfies Route
 
-export const routes = [
-    {
-        title: "Docs",
-        items: [
-            {
-                name: "Introduction",
-                path: "/docs/introduction",
-                icon: Sticker
-            },
-            {
-                name: "Getting Started",
-                path: "/docs/getting-started",
-                icon: Compass
-            }
-        ]
-    },
-    {
-        separator: true
-    },
-    {
+export const components = {
         title: "Components",
         items: [
             {
                 name: "Accordion",
-                path: "/components/accordion",
-                icon: null
+                path: "/components/accordion"
             },
             {
                 name: "Button",
-                path: "/components/button",
-                icon: null
-            }
+                path: "/components/button"
+            },
+            {
+                name: "Alert Dialog",
+                path: "/components/alert-dialog"
+            },
         ]
-    },
-] satisfies Routes
+} satisfies Route
