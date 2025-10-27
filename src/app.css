@@ -333,6 +333,11 @@ body {
     font-family: "Space Grotesk", sans-serif;
 }
 
+/*
+* !! VERY IMPORTANT
+* This forces chrome into rendering with GPU (Removes text-shift)
+* It makes the text noticably less jumpy on firefox thanks to the font-smoothing & text-rendering properties.
+*/
 .scale-3d {
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: antialiased;
