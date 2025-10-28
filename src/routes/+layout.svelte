@@ -12,7 +12,7 @@
 <div class="flex flex-row h-full">
     <Sidebar />
     <div class="my-14 px-5 py-5 md:py-10 w-full flex justify-center overflow-y-auto">
-        <div class="w-full md:w-[60%] flex">
+        <div class="w-full xl:w-[60%] flex">
             {@render children?.()}
         </div>
     </div>

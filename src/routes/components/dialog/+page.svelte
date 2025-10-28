@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Separator } from "$lib/index.ts"
     import * as Demo from "@internal/demo/index.ts"
-    import AlertDialogTriggerDemo from "./example-trigger.svelte"
-    import AlertDialogTriggerDemoRaw from "./example-trigger.svelte?raw"
-    import AlertDialogNoTriggerDemo from "./example-no-trigger.svelte"
-    import AlertDialogNoTriggerDemoRaw from "./example-no-trigger.svelte?raw"
+    import DialogTriggerDemo from "./example-trigger.svelte"
+    import DialogTriggerDemoRaw from "./example-trigger.svelte?raw"
+    import DialogNoTriggerDemo from "./example-no-trigger.svelte"
+    import DialogNoTriggerDemoRaw from "./example-no-trigger.svelte?raw"
 	import { buttonVariants } from "@core/button/index.ts"
     import { Props } from "@internal/props/index.ts"
 
@@ -14,20 +14,20 @@
 
 <div class="w-full flex flex-col gap-10">
     <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-bold">Alert Dialog</h1>
-        <p class="text-foreground-alt">A modal window presenting content or seeking user input without navigating away from the current context.</p>
+        <h1 class="text-3xl font-bold">Dialog</h1>
+        <p class="text-foreground-alt">A modal window for displaying content or requesting user input.</p>
     </div>
     <Separator />
     <Demo.Container>
         <Demo.Example>
-            <AlertDialogTriggerDemo />
+            <DialogTriggerDemo />
         </Demo.Example>
         <Demo.Code
             tabs={[
                 {
                     filename: "+page.svelte",
                     lang: "svelte",
-                    code: AlertDialogTriggerDemoRaw
+                    code: DialogTriggerDemoRaw
                 }
             ]}
         />
@@ -38,20 +38,20 @@
             <h2 class="text-2xl font-bold">Trigger</h2>
             <p class="text-foreground-alt">
                 If you don't want to use a default trigger,
-                you can optionally pass the prop <code>{"useTrigger={false}"}</code> to the <code>AlertDialog</code> component,
+                you can optionally pass the prop <code>{"useTrigger={false}"}</code> to the <code>Dialog</code> component,
                 then handle the state with your own component using <code>bind:open</code>.
             </p>
         </div>
         <Demo.Container>
             <Demo.Example>
-                <AlertDialogNoTriggerDemo />
+                <DialogNoTriggerDemo />
             </Demo.Example>
             <Demo.Code
                 tabs={[
                     {
                         filename: "+page.svelte",
                         lang: "svelte",
-                        code: AlertDialogNoTriggerDemoRaw
+                        code: DialogNoTriggerDemoRaw
                     }
                 ]}
             />
@@ -61,8 +61,8 @@
     <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Props</h2>
         <Props
-            component="AlertDialog"
-            description="The component used to set and manage the state of the alert dialog."
+            component="Dialog"
+            description="The component used to set and manage the state of the dialog."
             items={[
                 {
                     property: "open",

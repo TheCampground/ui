@@ -2,7 +2,7 @@
   "name": "vesper-light",
   "displayName": "Vesper Light",
   "colors": {
-    "editor.background": "#FFFFFF",
+    "editor.background": "#f6ede3",
     "editor.foreground": "#000000",
     "editor.selectionBackground": "#FF8C0020",
     "editor.selectionHighlightBackground": "#FF8C0020",

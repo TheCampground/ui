@@ -7,7 +7,7 @@
 
 <div class={cn(
     className,
-    "flex border-b-2 min-h-60 h-fit justify-center items-center bg-foreground-alt/5 px-10 w-full"
+    "flex border-b-2 min-h-60 h-fit justify-center items-center bg-foreground-alt/5 px-10 w-full py-5"
 )}>
     {@render children?.()}
 </div>

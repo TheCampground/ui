@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { Separator } from "@internal/separator/index.ts"
+	import { Separator } from "$lib/index.ts"
+	import { Button, buttonVariants } from "$lib/index.ts"
     import ButtonDemoRaw from "./example.svelte?raw"
+	import { Props } from "@internal/props/index.ts"
     import * as Demo from "@internal/demo/index.ts"
     import ButtonDemo from "./example.svelte"
-	import { Button } from "$lib/index.ts"
+
+    const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).join(" | ")}`
+    const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).join(" | ")}`
 </script>
 
 <div class="w-full flex flex-col gap-10">
@@ -26,6 +30,7 @@
             ]}
         />
     </Demo.Container>
+    <Separator hidden />
     <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Variants</h2>
         <div class="flex gap-10 flex-wrap">
@@ -54,6 +59,12 @@
                 </Button>
             </div>
             <div class="flex flex-col gap-2">
+                <p class="text-foreground-alt text-sm">Outline</p>
+                <Button variant="outline" size="default">
+                    Unlimited
+                </Button>
+            </div>
+            <div class="flex flex-col gap-2">
                 <p class="text-foreground-alt text-sm">Ghost</p>
                 <Button variant="ghost" size="default">
                     Unlimited
@@ -67,6 +78,7 @@
             </div>
         </div>
     </div>
+    <Separator hidden />
     <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Sizes</h2>
         <div class="flex gap-10 flex-wrap">
@@ -89,5 +101,47 @@
                 </Button>
             </div>
         </div>
+    </div>
+    <Separator hidden />
+    <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Props</h2>
+        <Props
+            component="Button"
+            description="The button component."
+            items={[
+                {
+                    property: "variant",
+                    type: "ButtonVariant",
+                    typeDef: ButtonVariants,
+                    default: "default",
+                    description: "The variant of the default trigger"
+                },
+                {
+                    property: "size",
+                    type: "ButtonSize",
+                    typeDef: ButtonSizes,
+                    default: "default",
+                    description: "The size of the default trigger"
+                },
+                {
+                    property: "href",
+                    type: "string",
+                    default: "",
+                    description: "Converts the button to an anchor tag when passed"
+                },
+                {
+                    property: "disabled",
+                    type: "boolean",
+                    default: "false",
+                    description: "Whether or not the button is disabled"
+                },
+                {
+                    property: "children",
+                    type: "Snippet",
+                    default: "",
+                    description: "The child content to render"
+                },
+            ]}
+        />
     </div>
 </div>

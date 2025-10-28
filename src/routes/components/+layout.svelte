@@ -1,13 +1,13 @@
 <script lang="ts">
     import { components, type RouteItem } from "@internal/sidebar/routes.ts"
-	import { Separator } from "@internal/separator/index.ts"
+	import { Separator } from "$lib/index.ts"
 	import { goto } from "$app/navigation"
 	import { cn } from "$lib/utils.ts"
     import { page } from "$app/state"
 
     let { children } = $props()
 
-    const current = $derived(components.items.find(item => item.path === page.url.pathname)!) as RouteItem
+    const current: RouteItem = $derived(components.items.find(item => item.path === page.url.pathname)!)
 
     function getNextComponent() {
         return components.items[components.items.indexOf(current) + 1]

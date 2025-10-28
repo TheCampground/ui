@@ -22,7 +22,7 @@
     }
 </script>
 
-<div class="flex flex-col w-full text-sm">
+<div class="flex flex-col w-full text-sm" id="docs">
     <div class="flex w-full justify-between items-center">
         <div class="flex w-full items-center">
             {#each tabs as tab}
@@ -34,6 +34,7 @@
                         tab.filename === current.filename && "border-button-primary"
                     )}
                     onclick={() => current = tab}
+                    disabled={tabs.length === 1}
                 >
                     {tab.filename}
                 </Button>

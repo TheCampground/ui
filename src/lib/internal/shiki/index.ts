@@ -3,7 +3,7 @@ import { createHighlighter } from "shiki"
 
 const highlighter = await createHighlighter({
     themes: [],
-    langs: ["typescript", "javascript", "svelte", "html", "css", "text"]
+    langs: ["typescript", "javascript", "svelte", "html", "css", "text", "shell"]
 })
 
 await highlighter.loadTheme("vesper")
@@ -24,6 +24,7 @@ export class ShikiHandler {
     }
 
     static replaceImport(code: string) {
+        if (!code || !code?.replace) return "<!-- No code provided -->"
         return code
             .replace(/\$lib\/index\.[t|j]s/g, "@campground/ui")
     }

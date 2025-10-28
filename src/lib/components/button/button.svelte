@@ -11,6 +11,7 @@
                 default: "bg-dark text-background shadow-mini hover:bg-button-default-hover hover:shadow-button-default-hove active:bg-dark",
                 primary: "bg-button-primary hover:bg-button-primary-hover hover:shadow-button-primary-hover active:bg-button-primary",
                 secondary: "bg-button-secondary hover:bg-button-secondary-hover hover:shadow-button-secondary-hover active:bg-button-secondary",
+                outline: "border hover:bg-button-secondary",
                 ghost: "hover:bg-button-ghost-hover",
                 danger: "bg-button-danger text-white",
                 link: "hover:underline"

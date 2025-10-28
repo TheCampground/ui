@@ -24,13 +24,14 @@
 	--destructive: hsl(347 77% 50%);
 	--tertiary: hsl(37.7 92.1% 50.2%);
 	--line: hsl(0 0% 100%);
+    --brand: hsl(31 96% 78%);
 
 	--text: hsl(12, 6%, 15%);
 
 	--button-default-hover: hsl(30, 7%, 24%);
 	--button-default-hover-shadow: 0 1px 4px 1px hsl(12, 6%, 15%);
 
-    --button-primary: hsl(31 96% 78%);
+    --button-primary: var(--brand);
     --button-primary-hover: hsl(31, 98%, 82%);
     --button-primary-hover-shadow: 0 1px 4px 1px rgba(247, 198, 146, 0.37);
 
@@ -110,6 +111,7 @@
 	--color-line: var(--line);
 	--color-contrast: var(--contrast);
 	--color-foreground: var(--text);
+	--color-brand: var(--brand);
 
 	--color-button-default-hover: var(--button-default-hover);
 
@@ -346,5 +348,13 @@ body {
 }
 
 pre.shiki {
-    @apply p-2 text-sm whitespace-break-spaces;
+    @apply p-2.5 text-sm whitespace-break-spaces rounded-none;
+}
+
+:not(pre):not(.shiki) > code {
+    @apply text-sm whitespace-break-spaces bg-foreground-alt/5 border px-1 py-px rounded-sm;
+}
+
+.brand-link {
+    @apply text-brand hover:underline
 }

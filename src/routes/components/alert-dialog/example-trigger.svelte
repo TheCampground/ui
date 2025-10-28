@@ -4,9 +4,9 @@
 
 <AlertDialog buttonText="Join The Campsite">
     {#snippet title()}
-        <p>Are you sure you want to join?</p>
+        Are you sure you want to join?
     {/snippet}
     {#snippet description()}
-        <p>Joining The Campsite will grant you unlimited virtual s'mores!</p>
+        Joining The Campsite will grant you unlimited virtual s'mores!
     {/snippet}
 </AlertDialog>
