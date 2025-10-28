@@ -1,6 +1,8 @@
 <script lang="ts">
     import { components, type RouteItem } from "@internal/sidebar/routes.ts"
-	import { Separator } from "$lib/index.ts"
+    import { Sidebar } from "@internal/sidebar/index.ts"
+    import { Nav } from "@internal/nav/index.ts"
+    import { Separator } from "$lib/index.ts"
 	import { goto } from "$app/navigation"
 	import { cn } from "$lib/utils.ts"
     import { page } from "$app/state"
@@ -19,12 +21,20 @@
 
 </script>
 
-<div class="flex flex-col gap-10 w-full">
-    {@render children?.()}
+<Nav />
+<div class="flex flex-row h-full">
+    <Sidebar />
+    <div class="my-14 px-5 py-5 md:py-10 w-full flex justify-center overflow-y-auto">
+        <div class="w-full xl:w-[60%] flex">
+            <div class="flex flex-col gap-10 w-full">
+                {@render children?.()}
 
-    <Separator />
+                <Separator />
 
-    {@render PageButtons()}
+                {@render PageButtons()}
+            </div>
+        </div>
+    </div>
 </div>
 
 {#snippet PageButtons()}

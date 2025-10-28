@@ -44,7 +44,7 @@
                     >
                         <div class="flex items-center gap-2">
                             {#if item?.icon}
-                            <Icon src={item.icon} theme="bold" class="size-4" />
+                                <Icon src={item.icon} theme="bold" class="size-4" />
                             {/if}
                             <p class={item?.icon ? "" : "font-normal text-xs"}>
                                 {item.name}

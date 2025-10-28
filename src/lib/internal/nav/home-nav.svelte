@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { sidebar } from "@internal/stores/index.ts"
-	import { List } from "@steeze-ui/phosphor-icons"
 	import { Button } from "@core/button/index.ts"
-	import { Icon } from "@steeze-ui/svelte-icon"
 </script>
 
-<div class="w-full border-b p-3 flex items-center justify-between fixed left-0 top-0 backdrop-blur-sm z-45 bg-background/50">
-    <div class="flex items-center">
-        <Button variant="ghost" size="icon" class="flex md:hidden" onclick={() => sidebar.set(!$sidebar)}>
-            <Icon src={List} theme="bold" class="size-5" />
-        </Button>
+<div class="w-full p-3 flex items-center justify-between fixed left-0 top-0 backdrop-blur-sm z-45 bg-background/50">
+    <div class="flex gap-4 items-center">
         <Button variant="link" href="/" class="gap-3">
             <img
                 src="/favicon-dark.png"
@@ -17,13 +11,16 @@
                 draggable="false"
                 alt=""
             />
-            <p class="text-lg md:text-xl font-bold">campground/ui</p>
+            <p class="hidden md:flex text-lg md:text-xl font-bold">campground/ui</p>
         </Button>
-        <div class="hidden md:flex items-center">
-            <Button variant="link" href="/docs/introduction">
+        <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+            <Button variant="secondary" size="small" class="rounded-full! h-6!" href="/">
+                <p class="text-xs font-normal">Home</p>
+            </Button>
+            <Button variant="ghost" size="small" class="rounded-full! h-6!" href="/docs/introduction">
                 <p class="text-xs font-normal">Docs</p>
             </Button>
-            <Button variant="link" href="/components">
+            <Button variant="ghost" size="small" class="rounded-full! h-6!" href="/components">
                 <p class="text-xs font-normal">Components</p>
             </Button>
         </div>
