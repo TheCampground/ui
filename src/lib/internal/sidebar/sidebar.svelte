@@ -17,7 +17,7 @@
 <div
     use:clickOutside={{ onClose: () => sidebar.set(false) }}
     class={cn(
-        "min-w-64 md:min-w-56 h-screen border-r z-40 md:z-30 overflow-auto flex flex-col p-3 pt-10 md:pt-5 select-none",
+        "min-w-64 md:min-w-60 h-screen border-r z-100 md:z-30 overflow-auto flex flex-col p-3 pt-10 md:pt-5 select-none",
         "fixed md:relative left-0 top-0 md:top-[61px] bg-background transition-all md:transition-none duration-600",
         $sidebar ? "left-0 opacity-100" : "-left-100 md:left-0 opacity-0 md:opacity-100"
     )}
