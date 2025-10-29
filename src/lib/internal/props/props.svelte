@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { Button } from '@core/button/index.ts'
-	import { Info } from '@steeze-ui/phosphor-icons'
-	import { Icon } from '@steeze-ui/svelte-icon'
-
+	import { Info } from "@steeze-ui/phosphor-icons"
+	import { Popover } from "@core/popover/index.ts"
+	import { Button } from "@core/button/index.ts"
+	import { Icon } from "@steeze-ui/svelte-icon"
+	import { ShikiHandler } from "@internal/shiki/index.ts"
+	import { Separator } from "@core/separator/index.ts"
 
     type BaseItem = {
         property: string
@@ -34,6 +36,9 @@
     }
 
     let { component, description, items }: Props = $props()
+
+    let anchor = $state<HTMLElement>(null!)
+    let open = $state(false)
 </script>
 
 <div class="flex flex-col gap-4">
@@ -45,22 +50,46 @@
         <thead>
             <tr>
                 <th class="text-start w-50 px-2 py-2">Property</th>
-                <th class="text-start w-60 px-2 py-2">Type</th>
-                <th class="text-start px-2 py-2">Description</th>
+                <th class="text-start w-60 px-2 py-2 hidden lg:table-cell">Type</th>
+                <th class="text-start px-2 py-2 hidden lg:table-cell">Description</th>
             </tr>
         </thead>
         <tbody>
             {#each items as item (item.property)}
                 <tr class="border-t">
-                    <td class="align-top text-start w-50 p-2 flex items-center gap-1">
-                        {@render property(item)}
-                        {@render bindable(item)}
+                    <td class="align-top text-start w-full lg:w-50 p-2 flex justify-between lg:justify-start items-center gap-1">
+                        <div class="flex items-center gap-1">
+                            {@render property(item)}
+                            <span class="hidden lg:block">
+                                {@render bindable(item)}
+                            </span>
+                        </div>
+                        <span class="block lg:hidden">
+                            <Popover useOverlay buttonText={Info} buttonSize="icon" buttonVariant="ghost" buttonClass="!size-6 align-center">
+                                <div class="flex flex-col gap-4 w-full">
+                                    <div class="flex w-full items-center justify-between gap-2">
+                                        <p class="text-sm font-semibold">{item.property}</p>
+                                        {@render bindable(item)}
+                                    </div>
+                                    <Separator class="my-0!" />
+                                    <code>{item.type}</code>
+                                    {#if item?.typeDef}
+                                        {@html ShikiHandler.codeToHtml(item.typeDef, "typescript")}
+                                    {/if}
+                                    <Separator class="my-0!" />
+                                    <div class="flex flex-col w-full">
+                                        <p class="text-sm font-medium">Description</p>
+                                        <p class="text-xs text-foreground-alt">{item.description}</p>
+                                    </div>
+                                </div>
+                            </Popover>
+                        </span>
                     </td>
-                    <td class="align-top text-start w-60 p-2 text-sm font-medium font-code">
+                    <td class="align-top text-start w-60 p-2 text-sm font-medium font-code hidden lg:table-cell">
                         {item.type}
                         {@render callback(item)}
                     </td>
-                    <td class="align-top text-start flex flex-col p-2">
+                    <td class="align-top text-start p-2 hidden lg:flex flex-col">
                         <p class="text-sm">{item.description}</p>
                         <p class="text-sm text-foreground-alt font-medium font-code">
                             Default:
@@ -105,11 +134,10 @@
     {/if}
 {/snippet}
 
-<!-- TODO: add popover for functions (`callback`) and custom types (`typeDef`) -->
 {#snippet callback(item: Item)}
-    {#if !item.type.match(/(string|number|boolean|Snippet)(\[\])?/g)}
-        <Button variant="ghost" size="icon" class="size-6 align-middle">
-            <Icon src={Info} theme="bold" class="size-3.5" />
-        </Button>
+    {#if item?.typeDef}
+        <Popover buttonText={Info} buttonSize="icon" buttonVariant="ghost" buttonClass="!size-6 align-middle">
+            {@html ShikiHandler.codeToHtml(item.typeDef, "typescript")}
+        </Popover>
     {/if}
 {/snippet}
