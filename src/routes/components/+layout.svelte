@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { components, type RouteItem } from "@internal/sidebar/routes.ts"
+    import { docs, components, type RouteItem } from "@internal/sidebar/routes.ts"
     import { Sidebar } from "@internal/sidebar/index.ts"
     import { Nav } from "@internal/nav/index.ts"
     import { Separator } from "$lib/index.ts"
@@ -16,7 +16,7 @@
     }
 
     function getPreviousComponent() {
-        return components.items[components.items.indexOf(current) - 1]
+        return components.items[components.items.indexOf(current) - 1] || docs.items[docs.items.length - 1]
     }
 
 </script>
@@ -24,17 +24,15 @@
 <Nav />
 <div class="flex flex-row h-full">
     <Sidebar />
-    <div class="my-14 px-5 py-5 md:py-10 w-full flex justify-center overflow-y-auto">
+    <main class="my-14 px-5 py-5 md:py-10 w-full flex justify-center overflow-y-auto">
         <div class="w-full xl:w-[60%] flex">
             <div class="flex flex-col gap-10 w-full">
                 {@render children?.()}
-
                 <Separator />
-
                 {@render PageButtons()}
             </div>
         </div>
-    </div>
+    </main>
 </div>
 
 {#snippet PageButtons()}
@@ -46,7 +44,7 @@
         )}>
                 <button
                     onclick={() => goto(prev.path)}
-                    class="flex flex-col justify-center items-start gap-1 flex-1 bg-foreground-alt/5 hover:bg-foreground-alt/10 transition-all border-2 rounded-xl max-w-1/2 p-3 cursor-pointer disabled:pointer-ecents-none disabled:opacity-60"
+                    class="flex flex-col justify-center items-start gap-1 flex-1 bg-foreground-alt/5 hover:bg-foreground-alt/10 transition-all border-2 rounded-xl max-w-1/2 p-3 cursor-pointer disabled:pointer-events-none disabled:opacity-60"
                     disabled={!prev}
                 >
                     <p class="text-xs text-foreground-alt leading-none">Previous</p>
@@ -56,7 +54,7 @@
                 </button>
                 <button
                     onclick={() => goto(next?.path)}
-                    class="flex flex-col justify-center items-end gap-1 flex-1 bg-foreground-alt/5 hover:bg-foreground-alt/10 transition-all border-2 rounded-xl max-w-1/2 p-3 cursor-pointer disabled:pointer-ecents-none disabled:opacity-60"
+                    class="flex flex-col justify-center items-end gap-1 flex-1 bg-foreground-alt/5 hover:bg-foreground-alt/10 transition-all border-2 rounded-xl max-w-1/2 p-3 cursor-pointer disabled:pointer-events-none disabled:opacity-60"
                     disabled={!next}
                 >
                     <p class="text-xs text-foreground-alt leading-none">Next</p>
