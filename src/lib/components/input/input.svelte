@@ -59,7 +59,7 @@
             className,
             icon && position === "left" && "pl-11!",
             icon && position === "right" && "pr-11!",
-            "h-input-sm rounded-card-sm border-border-input bg-background placeholder:text-foreground-alt/50 hover:border-dark-40 focus:ring-foreground focus:ring-offset-background focus:outline-hidden inline-flex w-full items-center align-middle border px-4 text-base focus:ring-2 focus:ring-offset-2 sm:text-sm disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed"
+            "h-input-sm rounded-card-sm border-border-input bg-background placeholder:text-foreground-alt/50 hover:border-dark-40 focus:ring-foreground focus:ring-offset-background focus:outline-hidden inline-flex items-center align-middle border px-4 text-base focus:ring-2 focus:ring-offset-2 sm:text-sm disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed"
         )}
     />
 {/snippet}
