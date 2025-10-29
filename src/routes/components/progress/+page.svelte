@@ -5,7 +5,7 @@
     import ProgressDemo from "./example.svelte"
     import ProgressDemoRaw from "./example.svelte?raw"
 
-    const ProgressSizes = `type ProgressSize = ${Object.keys(progressVariants.variants.size).join(" | ")}`
+    const ProgressSizes = `type ProgressSize = ${Object.keys(progressVariants.variants.size).map(v => `"${v}"`).join(" | ")}`
 </script>
 
 <div class="w-full flex flex-col gap-10">

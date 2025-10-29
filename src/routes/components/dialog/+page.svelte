@@ -8,8 +8,8 @@
 	import { buttonVariants } from "@core/button/index.ts"
     import { Props } from "@internal/props/index.ts"
 
-    const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).join(" | ")}`
-    const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).join(" | ")}`
+    const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).map(v => `"${v}"`).join(" | ")}`
+    const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).map(v => `"${v}"`).join(" | ")}`
 </script>
 
 <div class="w-full flex flex-col gap-10">

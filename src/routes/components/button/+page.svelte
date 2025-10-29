@@ -6,8 +6,8 @@
     import * as Demo from "@internal/demo/index.ts"
     import ButtonDemo from "./example.svelte"
 
-    const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).join(" | ")}`
-    const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).join(" | ")}`
+    const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).map(v => `"${v}"`).join(" | ")}`
+    const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).map(v => `"${v}"`).join(" | ")}`
 </script>
 
 <div class="w-full flex flex-col gap-10">
