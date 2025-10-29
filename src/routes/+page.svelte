@@ -21,7 +21,7 @@
             <Button size="small" class="rounded-full! px-4 h-9! gap-3 border border-button-ghost-hover/40" href="/components">
                 <Icon src={Sparkle} theme="bold" class="size-4" />
                 <Separator orientation="vertical" class="bg-button-ghost-hover/40! h-[50%]!" />
-                <p class="text-xs font-normal">campground/ui now in <b>Beta</b>!</p>
+                <p class="text-xs font-normal">campground/ui is now in <b>beta</b>!</p>
             </Button>
             <h1 class="text-4xl md:text-6xl font-black w-full text-center">A collection of themed UI components.</h1>
             <p class="text-base md:text-lg text-foreground-alt">
@@ -51,4 +51,3 @@
 
     <Footer />
 </div>
-
