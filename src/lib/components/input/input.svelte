@@ -40,7 +40,7 @@
             src={icon}
             theme="bold"
             class={cn(
-                "absolute size-5 top-1/2 -translate-y-1/2 text-dark/30",
+                "absolute size-5 top-1/2 -translate-y-1/2 text-dark/30 pointer-events-none",
                 position === "left" ? "left-2 md:left-4" : "right-2 md:right-4"
             )}
         />

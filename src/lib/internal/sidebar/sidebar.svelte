@@ -63,12 +63,12 @@
             </p>
             <div class="flex flex-col w-full gap-1">
                 {#each componentItems as item, i (i)}
-                    {@const isCurrent = item.path === page.url.pathname}
+                    {@const isCurrent = item.id === page.params.id}
                     <Button
                         variant={isCurrent ? "secondary" : "ghost"}
                         size="small"
                         class="w-full gap-2 justify-start h-7"
-                        href={item.path}
+                        href="/{components.title.toLowerCase()}/{item.id}"
                     >
                         {#if "new" in item && item?.new}
                             <span class="size-2 bg-button-primary rounded-full"></span>

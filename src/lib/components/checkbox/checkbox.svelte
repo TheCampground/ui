@@ -44,7 +44,7 @@
             </div>
         {/snippet}
     </Checkbox.Root>
-    {#if label}
+    {#if label || children}
         <Label.Root for={id} bind:ref={labelRef} class={cn("text-sm", restProps.disabled && "opacity-60!")}>
             {#if label}
                 {label}

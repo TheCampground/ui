@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Info } from "@steeze-ui/phosphor-icons"
-	import { Popover } from "@core/popover/index.ts"
-	import { Button } from "@core/button/index.ts"
-	import { Icon } from "@steeze-ui/svelte-icon"
 	import { ShikiHandler } from "@internal/shiki/index.ts"
 	import { Separator } from "@core/separator/index.ts"
+	import { Info } from "@steeze-ui/phosphor-icons"
+	import { Popover } from "@core/popover/index.ts"
+	import { cn } from "$lib/utils.ts"
 
     type BaseItem = {
         property: string
@@ -60,26 +59,26 @@
                     <td class="align-top text-start w-full lg:w-50 p-2 flex justify-between lg:justify-start items-center gap-1">
                         <div class="flex items-center gap-1">
                             {@render property(item)}
-                            <span class="hidden lg:block">
-                                {@render bindable(item)}
-                            </span>
+                            {@render bindable(item)}
                         </div>
                         <span class="block lg:hidden">
                             <Popover useOverlay buttonText={Info} buttonSize="icon" buttonVariant="ghost" buttonClass="!size-6 align-center">
                                 <div class="flex flex-col gap-4 w-full">
                                     <div class="flex w-full items-center justify-between gap-2">
                                         <p class="text-sm font-semibold">{item.property}</p>
-                                        {@render bindable(item)}
+                                        {@render bindable(item, false)}
                                     </div>
                                     <Separator class="my-0!" />
                                     <code>{item.type}</code>
                                     {#if item?.typeDef}
+                                        <span class="max-w-[calc(100vw-5rem)] whitespace-break-spaces">
                                         {@html ShikiHandler.codeToHtml(item.typeDef, "typescript")}
+                                        </span>
                                     {/if}
                                     <Separator class="my-0!" />
                                     <div class="flex flex-col w-full">
                                         <p class="text-sm font-medium">Description</p>
-                                        <p class="text-xs text-foreground-alt">{item.description}</p>
+                                        <p class="text-xs text-foreground-alt max-w-[calc(100vw-5rem)] whitespace-break-spaces">{item.description}</p>
                                     </div>
                                 </div>
                             </Popover>
@@ -120,9 +119,14 @@
     <code class="text-xs!">{item.property}</code>
 {/snippet}
 
-{#snippet bindable(item: Item)}
+{#snippet bindable(item: Item, hidden: boolean = true)}
     {#if item.bindable}
-        <code class="text-xs! bg-button-primary/60! border-button-primary/80">$bindable</code>
+        <code class={cn(
+            hidden ? "hidden lg:block" : "block",
+            "text-xs! bg-button-primary/60! border-button-primary/80"
+        )}>
+            $bindable
+        </code>
     {/if}
 {/snippet}
 

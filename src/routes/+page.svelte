@@ -5,13 +5,22 @@
     import { HomeNav } from "@internal/nav/index.ts"
 	import Button from "@core/button/button.svelte"
 	import { Icon } from "@steeze-ui/svelte-icon"
+	import { goto } from "$app/navigation"
 
     let images = [
         "/images/home_themed.png",
         "/images/home_customizable.png",
         "/images/home_accessible.png",
     ]
+
+    function handleStartKeybind(e: KeyboardEvent) {
+        if (e.key === "s") {
+            goto("/components")
+        }
+    }
 </script>
+
+<svelte:window onkeyup={handleStartKeybind} />
 
 <HomeNav />
 
@@ -31,7 +40,8 @@
                 <a class="link" href="https://thecampground.dev" target="_blank">@TheCampground</a>
                 projects.
             </p>
-            <Button variant="primary" href="/docs/introduction">
+            <Button variant="primary" href="/docs/introduction" class="gap-2">
+                <span class="rounded-sm border font-mono text-xs leading-none size-5 flex items-center justify-center">S</span>
                 Get Started
             </Button>
         </div>

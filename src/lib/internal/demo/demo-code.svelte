@@ -6,13 +6,12 @@
 	import { delay } from "@internal/utils.ts"
 	import { cn } from "$lib/utils.ts"
 
-    let { tabs } = $props()
-    let current = $state(tabs[0])
+    let { filename, lang, code } = $props()
     let copying = $state(false)
 
     async function copyToClipboard() {
         try {
-            navigator.clipboard.writeText(current.code)
+            navigator.clipboard.writeText(code)
             copying = true
             await delay(2000)
         } catch (error) {
@@ -24,21 +23,8 @@
 
 <div class="flex flex-col w-full text-sm" id="docs">
     <div class="flex w-full justify-between items-center">
-        <div class="flex w-full items-center">
-            {#each tabs as tab}
-                <Button
-                    variant="ghost"
-                    size="small"
-                    class={cn(
-                        "w-fit rounded-none border-b-2 border-transparent p-4 h-10",
-                        tab.filename === current.filename && "border-button-primary"
-                    )}
-                    onclick={() => current = tab}
-                    disabled={tabs.length === 1}
-                >
-                    {tab.filename}
-                </Button>
-            {/each}
+        <div class="h-9 w-fit px-3 flex items-center justify-center select-none">
+            <p class="text-sm font-semibold leading-none">{filename}</p>
         </div>
         <Button
             variant="ghost"
@@ -49,5 +35,5 @@
             <Icon src={copying ? Check : Copy} theme="bold" class="size-4" />
         </Button>
     </div>
-    {@html ShikiHandler.codeToHtml(current.code, current.lang)}
+    {@html ShikiHandler.codeToHtml(code, lang)}
 </div>

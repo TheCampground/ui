@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AccordionDemo from "../../components/accordion/example.svelte?raw"
+    import AccordionDemo from "@internal/examples/accordion.svelte?raw"
 	import { ShikiHandler } from "@internal/shiki/index.ts"
 	import { Separator } from "$lib/index.ts"
 </script>

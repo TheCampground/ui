@@ -1,0 +1,33 @@
+<script lang="ts">
+    import { Button, Dialog, Label, Input } from "$lib/index.ts"
+
+	import { LockKeyOpen, PlusCircle } from "@steeze-ui/phosphor-icons"
+	import { Icon } from "@steeze-ui/svelte-icon"
+
+    let open = $state(false)
+</script>
+
+<Button variant="primary" size="icon" onclick={() => open = !open}>
+    <Icon src={PlusCircle} theme="bold" class="size-5" />
+</Button>
+
+<Dialog useTrigger={false} bind:open>
+    {#snippet title()}
+        Create API Key
+    {/snippet}
+    {#snippet description()}
+        Create and manage API keys.
+        You can create multiple keys to organize your applications.
+    {/snippet}
+    <div class="flex flex-col items-start gap-1 pb-11 pt-7 w-full">
+        <Label for="apiKey" class="text-sm font-medium">API Key</Label>
+        <Input
+            id="apiKey"
+            icon={LockKeyOpen}
+            position="left"
+        />
+    </div>
+    <div class="w-full flex justify-end">
+        <Button variant="primary">Create</Button>
+    </div>
+</Dialog>
