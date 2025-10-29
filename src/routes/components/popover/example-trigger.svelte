@@ -16,7 +16,7 @@
                 type="number"
                 icon={ArrowsHorizontal}
                 position="left"
-                class="w-30"
+                class="w-30! md:w-full!"
             />
             <Input
                 id="height"
@@ -24,7 +24,7 @@
                 type="number"
                 icon={ArrowsVertical}
                 position="left"
-                class="w-30"
+                class="w-30! md:w-full!"
             />
         </div>
     </div>

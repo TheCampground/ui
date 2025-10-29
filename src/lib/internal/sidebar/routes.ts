@@ -44,6 +44,10 @@ export const components: Route = {
                 path: "/components/button"
             },
             {
+                name: "Card",
+                path: "/components/card"
+            },
+            {
                 name: "Checkbox",
                 path: "/components/checkbox"
             },

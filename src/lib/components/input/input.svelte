@@ -41,7 +41,7 @@
             theme="bold"
             class={cn(
                 "absolute size-5 top-1/2 -translate-y-1/2 text-dark/30",
-                position === "left" ? "left-4" : "right-4"
+                position === "left" ? "left-2 md:left-4" : "right-2 md:right-4"
             )}
         />
     </div>
@@ -57,9 +57,9 @@
         {type}
         class={cn(
             className,
-            icon && position === "left" && "pl-11!",
-            icon && position === "right" && "pr-11!",
-            "h-input-sm rounded-card-sm border-border-input bg-background placeholder:text-foreground-alt/50 hover:border-dark-40 focus:ring-foreground focus:ring-offset-background focus:outline-hidden inline-flex items-center align-middle border px-4 text-base focus:ring-2 focus:ring-offset-2 sm:text-sm disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed"
+            icon && position === "left" && "pl-8! md:pl-11!",
+            icon && position === "right" && "pr-8! md:pr-11!",
+            "h-input-xs md:h-input-sm rounded-card-sm border-border-input bg-background placeholder:text-foreground-alt/50 hover:border-dark-40 focus:ring-foreground focus:ring-offset-background focus:outline-hidden inline-flex items-center align-middle border px-4 text-sm focus:ring-2 focus:ring-offset-2 sm:text-sm disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed w-full"
         )}
     />
 {/snippet}

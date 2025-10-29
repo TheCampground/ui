@@ -2,6 +2,7 @@
 export { Accordion } from "./components/accordion/index.ts"
 export { Button, buttonVariants, type ButtonProps, type ButtonSize, type ButtonVariant } from "./components/button/index.ts"
 export { AlertDialog } from "./components/alert-dialog/index.ts"
+export { Card } from "./components/card/index.ts"
 export { Checkbox } from "./components/checkbox/index.ts"
 export { Dialog } from "./components/dialog/index.ts"
 export { Empty } from "./components/empty/index.ts"
