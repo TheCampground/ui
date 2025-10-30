@@ -2,12 +2,9 @@ import VesperLight from "@internal/assets/vesper-light.json" with { type: "json"
 import { createHighlighter } from "shiki"
 
 const highlighter = await createHighlighter({
-    themes: [],
+    themes: [VesperLight, "vesper"],
     langs: ["typescript", "javascript", "svelte", "html", "css", "text", "shell"]
 })
-
-await highlighter.loadTheme("vesper")
-await highlighter.loadTheme(VesperLight)
 
 const shikiOptions = {
     themes: {

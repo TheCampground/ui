@@ -22,7 +22,7 @@
 </script>
 
 <div class="flex flex-col w-full text-sm" id="docs">
-    <div class="flex w-full justify-between items-center">
+    <div class="flex w-full justify-between items-center border-b">
         <div class="h-9 w-fit px-3 flex items-center justify-center select-none">
             <p class="text-sm font-semibold leading-none">{filename}</p>
         </div>

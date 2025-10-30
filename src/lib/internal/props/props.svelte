@@ -1,37 +1,15 @@
 <script lang="ts">
+	import type { Prop } from "@internal/sidebar/routes.ts"
 	import { ShikiHandler } from "@internal/shiki/index.ts"
 	import { Separator } from "@core/separator/index.ts"
 	import { Info } from "@steeze-ui/phosphor-icons"
 	import { Popover } from "@core/popover/index.ts"
 	import { cn } from "$lib/utils.ts"
 
-    type BaseItem = {
-        property: string
-        description: string
-        default?: string
-        typeDef?: string
-    }
-
-    type ItemAsFunction = {
-        property: string
-        bindable?: never
-        type: "function"
-        callback: string
-    }
-
-    type ItemOther = {
-        property: string
-        bindable?: boolean
-        type: Exclude<any, "function">
-        callback?: never
-    }
-
-    type Item = (BaseItem & (ItemAsFunction | ItemOther))
-
     type Props = {
         component: string
         description?: string
-        items: Item[]
+        items: Prop[]
     }
 
     let { component, description, items }: Props = $props()
@@ -60,6 +38,7 @@
                         <div class="flex items-center gap-1">
                             {@render property(item)}
                             {@render bindable(item)}
+                            {@render required(item)}
                         </div>
                         <span class="block lg:hidden">
                             <Popover useOverlay buttonText={Info} buttonSize="icon" buttonVariant="ghost" buttonClass="!size-6 align-center">
@@ -67,6 +46,7 @@
                                     <div class="flex w-full items-center justify-between gap-2">
                                         <p class="text-sm font-semibold">{item.property}</p>
                                         {@render bindable(item, false)}
+                                        {@render required(item, false)}
                                     </div>
                                     <Separator class="my-0!" />
                                     <code>{item.type}</code>
@@ -105,32 +85,43 @@
 {#snippet componentName(component: string)}
     {@const parts = component.split(".")}
     {#if parts.length === 1}
-        <span class="text-lg py-1 px-2 font-bold font-mono bg-button-primary select-none w-fit rounded-lg border">
+        <span class="text-lg py-1 px-2 font-bold font-mono bg-button-primary select-none w-fit rounded-lg border text-brand-foreground">
             {component}
         </span>
     {:else}
-        <span class="text-lg py-1 px-2 font-bold font-mono bg-button-primary select-none w-fit rounded-lg border">
+        <span class="text-lg py-1 px-2 font-bold font-mono bg-button-primary select-none w-fit rounded-lg border text-brand-foreground">
             <span class="opacity-70">{parts[0]}.</span>{parts[1]}
         </span>
     {/if}
 {/snippet}
 
-{#snippet property(item: Item)}
+{#snippet property(item: Prop)}
     <code class="text-xs!">{item.property}</code>
 {/snippet}
 
-{#snippet bindable(item: Item, hidden: boolean = true)}
+{#snippet bindable(item: Prop, hidden: boolean = true)}
     {#if item.bindable}
         <code class={cn(
             hidden ? "hidden lg:block" : "block",
-            "text-xs! bg-button-primary/60! border-button-primary/80"
+            "text-xs! bg-button-primary/40! border-button-primary/80"
         )}>
             $bindable
         </code>
     {/if}
 {/snippet}
 
-{#snippet defaultProp(item: Item)}
+{#snippet required(item: Prop, hidden: boolean = true)}
+    {#if item.required}
+        <code class={cn(
+            hidden ? "hidden lg:block" : "block",
+            "text-xs! bg-red-500/20! border-red-500 text-red-500"
+        )}>
+            required
+        </code>
+    {/if}
+{/snippet}
+
+{#snippet defaultProp(item: Prop)}
     {#if item.default}
         <code class="text-xs!">{item.default}</code>
     {:else}
@@ -138,7 +129,7 @@
     {/if}
 {/snippet}
 
-{#snippet callback(item: Item)}
+{#snippet callback(item: Prop)}
     {#if item?.typeDef}
         <Popover buttonText={Info} buttonSize="icon" buttonVariant="ghost" buttonClass="!size-6 align-middle">
             {@html ShikiHandler.codeToHtml(item.typeDef, "typescript")}

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { clickOutside } from "@internal/actions/clickOutside.ts"
+	import { groupRoutesBySection } from "@internal/utils.ts"
 	import { SidebarSimple } from "@steeze-ui/phosphor-icons"
+    import { routes, type RoutesFlatMap } from "./routes.ts"
     import { sidebar } from "@internal/stores/index.ts"
 	import { Button } from "@core/button/index.ts"
-    import { docs, components } from "./routes.ts"
 	import { Icon } from "@steeze-ui/svelte-icon"
 	import { onNavigate } from "$app/navigation"
 	import { cn } from "$lib/utils.ts"
@@ -11,7 +12,7 @@
 
     onNavigate(() => sidebar.set(false))
 
-    let componentItems = $derived(components.items.sort((a, b) => a.name.localeCompare(b.name)))
+    let grouped = groupRoutesBySection(routes)
 </script>
 
 <div
@@ -26,59 +27,40 @@
         <Icon src={SidebarSimple} class="size-4" />
     </Button>
     <div class="flex flex-col gap-10">
-        <div class="flex flex-col gap-2 w-full">
-            <p class="text-[11px] font-bold text-foreground/70 uppercase">
-                {docs.title}
-            </p>
-            <div class="flex flex-col w-full gap-1">
-                {#each docs.items as item, i (i)}
-                    {@const isCurrent = item.path === page.url.pathname}
-                    <Button
-                        variant={isCurrent ? "secondary" : "ghost"}
-                        size="small"
-                        class={cn(
-                            "w-full gap-2 justify-start",
-                            item?.icon ? "" : "h-7"
-                        )}
-                        href={item.path}
-                    >
-                        <div class="flex items-center gap-2">
-                            {#if item?.icon}
-                                <Icon src={item.icon} theme="bold" class="size-4" />
-                            {/if}
-                            <p class={item?.icon ? "" : "font-normal text-xs"}>
-                                {item.name}
-                            </p>
-                            {#if "new" in item && item?.new}
-                                <span class="size-2 bg-button-primary rounded-full"></span>
-                            {/if}
-                        </div>
-                    </Button>
-                {/each}
-            </div>
-        </div>
-        <div class="flex flex-col gap-2 w-full">
-            <p class="text-[11px] font-bold text-foreground/70 uppercase">
-                {components.title}
-            </p>
-            <div class="flex flex-col w-full gap-1">
-                {#each componentItems as item, i (i)}
-                    {@const isCurrent = item.id === page.params.id}
-                    <Button
-                        variant={isCurrent ? "secondary" : "ghost"}
-                        size="small"
-                        class="w-full gap-2 justify-start h-7"
-                        href="/{components.title.toLowerCase()}/{item.id}"
-                    >
-                        {#if "new" in item && item?.new}
-                            <span class="size-2 bg-button-primary rounded-full"></span>
-                        {/if}
-                        <p class="font-normal text-xs">
-                            {item.name}
-                        </p>
-                    </Button>
-                {/each}
-            </div>
-        </div>
+        {#each grouped as section (section.title)}
+            {@render Routes(section)}
+        {/each}
     </div>
 </div>
+
+{#snippet Routes(section: RoutesFlatMap)}
+    {@const sorted = section.title === "Components" ? section.items.sort((a, b) => a.name.localeCompare(b.name)) : section.items}
+    <div class="flex flex-col gap-2 w-full">
+        <p class="text-[11px] font-bold text-foreground/70 uppercase">
+            {section.title}
+        </p>
+        <div class="flex flex-col w-full gap-1">
+            {#each sorted as item (item.id)}
+                {@const isCurrent = item.path === page.url.pathname}
+                <Button
+                    variant={isCurrent ? "secondary" : "ghost"}
+                    size="small"
+                    class={cn("w-full gap-2 justify-start", item?.icon ? "" : "h-7")}
+                    href={item.path}
+                >
+                    <div class="flex items-center gap-2">
+                        {#if item.new}
+                            <span class="size-2 bg-button-primary rounded-full"></span>
+                        {/if}
+                        {#if item.icon}
+                            <Icon src={item.icon} theme="bold" class="size-4" />
+                        {/if}
+                        <p class={item?.icon ? "" : "font-normal text-xs"}>
+                            {item.name}
+                        </p>
+                    </div>
+                </Button>
+            {/each}
+        </div>
+    </div>
+{/snippet}

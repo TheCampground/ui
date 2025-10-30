@@ -1,13 +1,21 @@
 <script lang="ts">
-	import { Fingerprint } from "@steeze-ui/phosphor-icons"
+	import { Fingerprint, MagnifyingGlass } from "@steeze-ui/phosphor-icons"
     import { Input } from "$lib/index.ts"
 
     let value = $state("")
 </script>
 
-<Input
-    bind:value
-    placeholder="API Key"
-    icon={Fingerprint}
-    position="left"
-/>
+<div class="w-full flex flex-col gap-5">
+    <Input
+        bind:value
+        placeholder="Start typing to search"
+        icon={MagnifyingGlass}
+        position="left"
+    />
+    <Input
+        bind:value
+        placeholder="API Key"
+        icon={Fingerprint}
+        position="right"
+    />
+</div>

@@ -13,7 +13,6 @@ const config = {
         }),
 		alias: {
 		    "@internal": resolve("./src/lib/internal"),
-		    "@internal/mdsvex": resolve("./src/lib/internal/mdsvex"),
 			"@core": resolve("./src/lib/components"),
 		},
         experimental: {

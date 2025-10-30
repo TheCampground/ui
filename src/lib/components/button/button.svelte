@@ -9,11 +9,11 @@
         variants: {
             variant: {
                 default: "bg-dark text-background shadow-mini hover:bg-button-default-hover hover:shadow-button-default-hove active:bg-dark",
-                primary: "bg-button-primary hover:bg-button-primary-hover hover:shadow-button-primary-hover active:bg-button-primary",
-                secondary: "bg-button-secondary hover:bg-button-secondary-hover hover:shadow-button-secondary-hover active:bg-button-secondary",
-                outline: "border hover:bg-button-secondary-hover",
+                primary: "bg-button-primary hover:bg-button-primary-hover hover:shadow-button-primary-hover active:bg-button-primary text-brand-foreground",
+                secondary: "bg-button-secondary hover:bg-button-secondary-hover hover:shadow-button-secondary-hover active:bg-button-secondary text-brand-foreground text-text",
+                outline: "border hover:bg-button-outline-hover",
                 ghost: "hover:bg-button-ghost-hover",
-                danger: "bg-button-danger text-white",
+                danger: "bg-button-danger hover:bg-button-danger-hover text-white",
                 link: "hover:underline"
             },
             size: {

@@ -2,29 +2,34 @@ import { Compass, Sticker, type IconSource } from "@steeze-ui/phosphor-icons"
 
 import { progressVariants } from "@core/progress/index.ts"
 import { buttonVariants } from "@core/button/index.ts"
+import { noiseVariants } from "@core/noise/index.ts"
 
-export type RouteItem = {
+export type DocsRouteItem = {
     name: string
-    path: string
+    description: string
+    id: string
+    path?: string
     new?: boolean
     icon?: IconSource
 }
-export type Route = {
-    title: string
-    items: RouteItem[]
+export type DocsRoute = {
+    title: "Docs"
+    items: DocsRouteItem[]
 }
 
-export const docs: Route = {
+export const docs: DocsRoute = {
     title: "Docs",
     items: [
         {
             name: "Introduction",
-            path: "/docs/introduction",
+            description: "A collection of themed UI components.",
+            id: "introduction",
             icon: Sticker
         },
         {
             name: "Getting Started",
-            path: "/docs/getting-started",
+            description: "Learn how to get started using <code>campground/ui</code> in your app",
+            id: "getting-started",
             icon: Compass
         }
     ]
@@ -126,6 +131,7 @@ type BaseProp = {
     description: string
     default?: string
     typeDef?: string
+    required?: boolean
 }
 
 type PropAsFunction = {
@@ -149,27 +155,33 @@ export type Example = {
     lang?: string
     title?: string
     description?: string
+    code?: boolean
 }
 
-export type TestRoute = {
-    title: string
-    items: (Omit<RouteItem, "path"> & {
-        id: string
-        description: string
-        examples: Example[]
-        props: {
-            component: string
-            description: string
-            items: Prop[]
-        }[]
-    })[]
+type ComponentRouteItem = (DocsRouteItem & {
+    id: string
+    path?: string
+    description: string
+    examples: Example[]
+    props: ComponentProp[]
+})
+type ComponentProp = {
+    component: string
+    description: string
+    items: Prop[]
 }
 
-const ButtonVariants = `type ButtonVariant = ${Object.keys(buttonVariants.variants.variant).map(v => `"${v}"`).join(" | ")}`
-const ButtonSizes = `type ButtonSize = ${Object.keys(buttonVariants.variants.size).map(v => `"${v}"`).join(" | ")}`
-const ProgressSizes = `type ProgressSize = ${Object.keys(progressVariants.variants.size).map(v => `"${v}"`).join(" | ")}`
+export type ComponentsRoute = {
+    title: "Components"
+    items: ComponentRouteItem[]
+}
 
-export const components: TestRoute = {
+const ButtonVariants = Object.keys(buttonVariants.variants.variant).map(v => `"${v}"`).join(" | ")
+const ButtonSizes = Object.keys(buttonVariants.variants.size).map(v => `"${v}"`).join(" | ")
+const ProgressSizes = Object.keys(progressVariants.variants.size).map(v => `"${v}"`).join(" | ")
+const NoiseIntensity = Object.keys(noiseVariants.variants.intensity).map(v => `"${v}"`).join(" | ")
+
+export const components: ComponentsRoute = {
     title: "Components",
     items: [
         {
@@ -184,8 +196,8 @@ export const components: TestRoute = {
                     items: [
                         {
                             property: "type",
-                            type: "AccordionType",
-                            typeDef: "type AccordionType = \"single\" | \"multiple\"",
+                            type: "enum",
+                            typeDef: "\"single\" | \"multiple\"",
                             default: "single",
                             description: "Determines how many accordion items can be open at the same time"
                         }
@@ -255,14 +267,14 @@ export const components: TestRoute = {
                         },
                         {
                             property: "buttonVariant",
-                            type: "ButtonVariant",
+                            type: "enum",
                             typeDef: ButtonVariants,
                             default: "primary",
                             description: "The variant of the default trigger"
                         },
                         {
                             property: "buttonSize",
-                            type: "ButtonSize",
+                            type: "enum",
                             typeDef: ButtonSizes,
                             default: "primary",
                             description: "The size of the default trigger"
@@ -287,7 +299,11 @@ export const components: TestRoute = {
             id: "button",
             name: "Button",
             description: "A custom button components with multiple variations and sizes",
-            examples: [{ file: "button" }],
+            examples: [
+                { file: "button" },
+                { file: "button-variants", title: "Variants", description: "The different button variants", code: false },
+                { file: "button-sizes", title: "Sizes", description: "The different button sizes", code: false },
+            ],
             props: [
                 {
                     component: "Button",
@@ -295,14 +311,14 @@ export const components: TestRoute = {
                     items: [
                         {
                             property: "variant",
-                            type: "ButtonVariant",
+                            type: "enum",
                             typeDef: ButtonVariants,
                             default: "default",
                             description: "The variant of the default trigger"
                         },
                         {
                             property: "size",
-                            type: "ButtonSize",
+                            type: "enum",
                             typeDef: ButtonSizes,
                             default: "default",
                             description: "The size of the default trigger"
@@ -414,7 +430,7 @@ export const components: TestRoute = {
                         {
                             property: "label",
                             type: "string",
-                            default: "false",
+                            default: "",
                             description: "The content of the label as a prop"
                         },
                         {
@@ -465,14 +481,14 @@ export const components: TestRoute = {
                         },
                         {
                             property: "buttonVariant",
-                            type: "ButtonVariant",
+                            type: "enum",
                             typeDef: ButtonVariants,
                             default: "primary",
                             description: "The variant of the default trigger"
                         },
                         {
                             property: "buttonSize",
-                            type: "ButtonSize",
+                            type: "enum",
                             typeDef: ButtonSizes,
                             default: "primary",
                             description: "The size of the default trigger"
@@ -540,7 +556,7 @@ export const components: TestRoute = {
             description: "Displays a form input field or a component that looks like an input field.",
             examples: [
                 { file: "input" },
-                { file: "input-icon" }
+                { file: "input-icon", title: "Icon", description: "Display an icon in the input field either on the left or right" }
             ],
             props: [
                 {
@@ -562,8 +578,8 @@ export const components: TestRoute = {
                         },
                         {
                             property: "type",
-                            type: "InputType",
-                            typeDef: "type InputType = \"text\" | \"file\" | \"number\" | \"email\" | \"password\" | \"search\" | \"tel\" | \"url\" | \"week\"",
+                            type: "enum",
+                            typeDef: "\"text\" | \"file\" | \"number\" | \"email\" | \"password\" | \"search\" | \"tel\" | \"url\" | \"week\"",
                             default: "text",
                             description: "The type of input"
                         },
@@ -576,7 +592,7 @@ export const components: TestRoute = {
                         {
                             property: "position",
                             type: "IconPosition",
-                            typeDef: "type IconPosition = \"left\" | \"right\"",
+                            typeDef: "\"left\" | \"right\"",
                             default: "left",
                             description: "The position of the icon"
                         },
@@ -607,6 +623,30 @@ export const components: TestRoute = {
                             type: "Snippet",
                             default: "",
                             description: "The content of the label"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "noise",
+            name: "Noise",
+            description: "A noise / grain overlay to add depth to the page",
+            examples: [
+                { file: "noise", filename: "+layout.svelte" },
+                { file: "noise-static", filename: "+layout.svelte", title: "Static", description: "If you don't want the noise to be animated, you can pass the prop <code>animated={false}</code> to the Noise component." }
+            ],
+            props: [
+                {
+                    component: "Noise",
+                    description: "The noise component",
+                    items: [
+                        {
+                            property: "intensity",
+                            type: "enum",
+                            typeDef: NoiseIntensity,
+                            default: "low",
+                            description: "The intensity of the noise effect"
                         }
                     ]
                 }
@@ -656,14 +696,14 @@ export const components: TestRoute = {
                         },
                         {
                             property: "buttonVariant",
-                            type: "ButtonVariant",
+                            type: "enum",
                             typeDef: ButtonVariants,
                             default: "primary",
                             description: "The variant of the default trigger"
                         },
                         {
                             property: "buttonSize",
-                            type: "ButtonSize",
+                            type: "enum",
                             typeDef: ButtonSizes,
                             default: "primary",
                             description: "The size of the default trigger"
@@ -683,7 +723,8 @@ export const components: TestRoute = {
             name: "Progress",
             description: "Shows the completion status of a task.",
             examples: [
-                { file: "progress" }
+                { file: "progress" },
+                { file: "progress-sizes", title: "Sizes", description: "The different progress sizes", code: false },
             ],
             props: [
                 {
@@ -698,7 +739,7 @@ export const components: TestRoute = {
                         },
                         {
                             property: "size",
-                            type: "ProgressSize",
+                            type: "enum",
                             typeDef: ProgressSizes,
                             default: "default",
                             description: "The size of the progress bar"
@@ -733,8 +774,8 @@ export const components: TestRoute = {
                     items: [
                         {
                             property: "orientation",
-                            type: "Orientation",
-                            typeDef: "type Orientation = \"horizontal\" | \"vertical\"",
+                            type: "enum",
+                            typeDef: "\"horizontal\" | \"vertical\"",
                             default: "horizontal",
                             description: "The orientation of the separator"
                         },
@@ -748,5 +789,206 @@ export const components: TestRoute = {
                 }
             ]
         },
+        {
+            id: "switch",
+            name: "Switch",
+            description: "A toggle control that allows users to switch between \"on\" and \"off\" states.",
+            examples: [
+                { file: "switch" },
+                {
+                    file: "switch-child",
+                    title: "Child",
+                    description: "Alternatively, you can provide the label as a child component of the Switch, in case you need more complex styling."
+                },
+                { file: "switch-sizes", title: "Sizes", description: "The different switch sizes", code: false },
+            ],
+            props: [
+                {
+                    component: "Switch",
+                    description: "The switch component.",
+                    items: [
+                        {
+                            property: "size",
+                            type: "enum",
+                            typeDef: "\"default\" | \"small\"",
+                            default: "default",
+                            description: "The size of the switch component"
+                        },
+                        {
+                            property: "checked",
+                            bindable: true,
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the switch is on or off"
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the switch is disabled"
+                        },
+                        {
+                            property: "id",
+                            type: "string",
+                            default: "Random ID",
+                            description: "The id of the switch for the label"
+                        },
+                        {
+                            property: "label",
+                            type: "string",
+                            default: "",
+                            description: "The content of the label as a prop"
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the label as a child"
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            id: "tabs",
+            name: "Tabs",
+            description: "Organizes content into tabbed sections.",
+            examples: [
+                { file: "tabs" }
+            ],
+            props: [
+                {
+                    component: "Tabs.Root",
+                    description: "The root tabs component which contains the other tab components.",
+                    items: [
+                        {
+                            property: "value",
+                            bindable: true,
+                            type: "string",
+                            default: "",
+                            description: "The active tab"
+                        },
+                        {
+                            property: "onValueChange",
+                            type: "function",
+                            typeDef: "(value: string) => void",
+                            default: "",
+                            description: "A callback function called when the active tab value changes."
+                        },
+                        {
+                            property: "activationMode",
+                            type: "enum",
+                            typeDef: "\"automatic\" | \"manual\"",
+                            default: "automatic",
+                            description: "How the activation of tabs should be handled. If set to <span class=\"text-brand\">\"automatic\"</span>, the tab will be activated when the trigger is focused. If set to <span class=\"text-brand\">\"manual\"</span>, the tab will be activated when the trigger is pressed."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the tabs are disabled."
+                        },
+                        {
+                            property: "loop",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not the tabs are disabled."
+                        },
+                        {
+                            property: "orientation",
+                            type: "enum",
+                            typeDef: "\"horizontal\" | \"vertical\"",
+                            default: "horizontal",
+                            description: "The orientation of the tabs."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the label as a child"
+                        },
+                    ]
+                },
+                {
+                    component: "Tabs.List",
+                    description: "The component containing the tab triggers.",
+                    items: [
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render"
+                        }
+                    ]
+                },
+                {
+                    component: "Tabs.Trigger",
+                    description: "The root tabs component which contains the other tab components.",
+                    items: [
+                        {
+                            property: "value",
+                            required: true,
+                            type: "string",
+                            default: "",
+                            description: "The value of the tab this trigger represents."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the tab is disabled."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the label as a child"
+                        },
+                    ]
+                },
+                {
+                    component: "Tabs.Content",
+                    description: "The panel containing the contents of a tab.",
+                    items: [
+                        {
+                            property: "value",
+                            required: true,
+                            type: "string",
+                            default: "",
+                            description: "The value of the tab this content represents."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the label as a child"
+                        },
+                    ]
+                }
+            ]
+        },
     ]
 }
+
+type BaseRoute = {
+    id: string
+    name: string
+    description: string
+    path: string
+    title: string
+    items: ComponentRouteItem[] | DocsRouteItem[]
+    section: "Docs" | "Components"
+}
+export type FlatDocs = BaseRoute & DocsRouteItem
+export type FlatComponents = BaseRoute & ComponentRouteItem & ComponentProp[]
+
+export type RoutesFlatMap = FlatDocs | FlatComponents
+
+export const routes = [docs, components]
+    .flatMap((section) => {
+        return section.items.map((item) => ({
+            section: section.title,
+            path: `/${section.title.toLowerCase()}/${item.id}`,
+            ...item
+        }))
+    }) as any as RoutesFlatMap[]

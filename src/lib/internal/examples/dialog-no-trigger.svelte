@@ -23,8 +23,9 @@
         <Label for="apiKey" class="text-sm font-medium">API Key</Label>
         <Input
             id="apiKey"
+            placeholder="secret_api_key"
             icon={LockKeyOpen}
-            position="left"
+            position="right"
         />
     </div>
     <div class="w-full flex justify-end">

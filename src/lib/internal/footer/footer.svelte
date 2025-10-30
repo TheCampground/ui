@@ -1,12 +1,13 @@
 <script>
 	import { Button } from "@core/button/index.ts"
+    import { mode } from "mode-watcher"
 </script>
 
 <div class="w-full p-5 flex items-center justify-between backdrop-blur-sm bg-background/50 border-t">
     <div class="flex items-center text-sm gap-2">
         <Button variant="ghost" size="icon" href="/">
             <img
-                src="/favicon-dark.png"
+                src="/favicon{mode.current === "light" ? "-dark" : ""}.png"
                 class="size-5 md:size-6 select-none pointer-events-none"
                 draggable="false"
                 alt=""

@@ -1,12 +1,15 @@
 <script lang="ts">
+	import { MoonStars, Sun } from "@steeze-ui/phosphor-icons"
 	import { Button } from "@core/button/index.ts"
+	import { Icon } from "@steeze-ui/svelte-icon"
+    import { setMode, mode } from "mode-watcher"
 </script>
 
-<div class="w-full p-3 flex items-center justify-between fixed left-0 top-0 backdrop-blur-sm z-45 bg-background/50">
+<div class="w-full p-3 flex items-center justify-between fixed left-0 top-0 backdrop-blur-lg z-45 bg-background/70">
     <div class="flex gap-4 items-center">
         <Button variant="link" href="/" class="gap-3">
             <img
-                src="/favicon-dark.png"
+                src="/favicon{mode.current === "light" ? "-dark" : ""}.png"
                 class="size-5 md:size-6 select-none pointer-events-none"
                 draggable="false"
                 alt=""
@@ -25,12 +28,18 @@
             </Button>
         </div>
     </div>
-    <Button variant="ghost" size="icon" href="https://github.com/thecampground/ui" target="_blank">
-        <img
-            src="/github_dark.png"
-            class="size-5 select-none pointer-events-none"
-            draggable="false"
-            alt=""
-        />
-    </Button>
+    <div class="flex gap-1">
+        <Button variant="ghost" size="icon" href="https://github.com/thecampground/ui" target="_blank" class="hidden md:flex">
+            <img
+                src="/github_{mode.current === "light" ? "dark" : "light"}.png"
+                class="size-5 select-none pointer-events-none"
+                draggable="false"
+                alt=""
+            />
+        </Button>
+        <Button variant="ghost" size="icon" onclick={() => setMode(mode.current === "light" ? "dark" : "light")}>
+            <Icon src={mode.current === "dark" ? Sun : MoonStars} theme="bold" class="min-w-5 min-h-5 max-w-5 max-h-5 pointer-events-none group-hover:text-primary transition-all" />
+            <span class="sr-only">Toggle theme</span>
+        </Button>
+    </div>
 </div>

@@ -5,10 +5,6 @@
 </script>
 
 <div class="w-full flex flex-col gap-10" id="docs">
-    <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-bold">Getting Started</h1>
-        <p class="text-foreground-alt">Learn how to get started using <code>campground/ui</code> in your app</p>
-    </div>
     <p>
         Welcome to <code>campground/ui</code>, a collection of themed components built for
         <a class="link" href="https://thecampground.dev" target="_blank">@TheCampground</a>, built with accessibility in mind.

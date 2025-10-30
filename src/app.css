@@ -9,6 +9,8 @@
 	--background-alt: hsl(0 0% 100%);
 	--foreground: hsl(12 7% 15%);
 	--foreground-alt: hsl(0 0% 32%);
+	--card: hsl(33, 80%, 93%);
+	--card-alt: hsl(33, 50%, 88%);
 	--muted: hsl(240 5% 96%);
 	--muted-foreground: hsla(0 0% 9% / 0.4);
 	--border: hsl(240 6% 10%);
@@ -25,22 +27,20 @@
 	--tertiary: hsl(37.7 92.1% 50.2%);
 	--line: hsl(0 0% 100%);
     --brand: hsl(31 96% 78%);
+    --brand-foreground: hsl(12, 6%, 15%);
 
 	--text: hsl(12, 6%, 15%);
 
-	--button-default-hover: hsl(30, 7%, 24%);
-	--button-default-hover-shadow: 0 1px 4px 1px hsl(12, 6%, 15%);
-
     --button-primary: var(--brand);
-    --button-primary-hover: hsl(31, 98%, 82%);
-    --button-primary-hover-shadow: 0 1px 4px 1px rgba(247, 198, 146, 0.37);
-
-    --button-secondary-hover:	hsl(111, 12%, 88%);
-    --button-secondary-hover-shadow:  hsl(111, 12%, 88%, 0.35);
-
-    --button-ghost-hover: hsl(33, 52%, 92%);
-    --button-secondary: hsl(86, 13%, 90%);
     --button-danger: hsl(347 60% 50%);
+    --button-secondary: hsl(86, 13%, 90%);
+
+	--button-default-hover: hsl(30, 7%, 24%);
+    --button-primary-hover: hsl(31, 98%, 82%);
+    --button-secondary-hover: hsl(111, 12%, 88%);
+    --button-danger-hover: hsl(347 60% 45%);
+    --button-outline-hover:	hsl(33, 52%, 92%);
+    --button-ghost-hover: hsl(33, 52%, 92%);
 
 	/* black */
 	--contrast: hsl(0 0% 0%);
@@ -51,7 +51,7 @@
 	--shadow-popover: 0px 7px 12px 3px hsla(var(--dark-10));
 	--shadow-kbd: 0px 2px 0px 0px rgba(0, 0, 0, 0.07);
 	--shadow-btn: 0px 1px 0px 1px rgba(0, 0, 0, 0.03);
-	--shadow-card: 0px 2px 0px 1px rgba(0, 0, 0, 0.04);
+	--shadow-card: 0px 4px 0px 0px rgba(0, 0, 0, 0.03);
 	--shadow-date-field-focus: 0px 0px 0px 3px rgba(24, 24, 27, 0.17);
 }
 
@@ -61,6 +61,8 @@
 	--background-alt: hsl(0 0% 8%);
 	--foreground: hsl(0 0% 95%);
 	--foreground-alt: hsl(0 0% 70%);
+	--card: hsl(0 0% 8%);
+	--card-alt: hsl(0, 0%, 9%);
 	--muted: hsl(240 4% 16%);
 	--muted-foreground: hsla(0 0% 100% / 0.4);
 	--border: hsl(0 0% 96%);
@@ -79,6 +81,17 @@
 	/* white */
 	--contrast: hsl(0 0% 100%);
 
+	--text: hsl(0 0% 95%);
+
+    --button-primary: var(--brand);
+    --button-secondary: hsl(0 0% 10%);
+
+	--button-default-hover: hsl(0 0% 85%);
+    --button-primary-hover: hsl(31 60% 70%);
+    --button-secondary-hover:	hsl(0 0% 12%);
+    --button-outline-hover:	hsl(0 0% 10%);
+    --button-ghost-hover: hsl(0 0% 10%);
+
 	/* Shadows */
 	--shadow-mini: 0px 1px 0px 1px rgba(0, 0, 0, 0.3);
 	--shadow-mini-inset: 0px 1px 0px 0px rgba(0, 0, 0, 0.5) inset;
@@ -94,6 +107,8 @@
 	--color-background-alt: var(--background-alt);
 	--color-foreground: var(--foreground);
 	--color-foreground-alt: var(--foreground-alt);
+	--color-card: var(--card);
+	--color-card-alt: var(--card-alt);
 	--color-muted: var(--muted);
 	--color-muted-foreground: var(--muted-foreground);
 	--color-border: var(--border-card);
@@ -112,23 +127,18 @@
 	--color-contrast: var(--contrast);
 	--color-foreground: var(--text);
 	--color-brand: var(--brand);
-
-	--color-button-default-hover: var(--button-default-hover);
+	--color-brand-foreground: var(--brand-foreground);
 
     --color-button-primary: var(--button-primary);
-    --color-button-primary-hover: var(--button-primary-hover);
-
-    --color-button-ghost-hover: var(--button-ghost-hover);
-
     --color-button-secondary: var(--button-secondary);
-    --color-button-secondary-hover: var(--button-secondary-hover);
-    --shadow-button-secondary-hover: var(--button-secondary-hover-shadow);
-
     --color-button-danger: var(--button-danger);
 
-    --shadow-button-primary-hover: var(--button-primary-hover-shadow);
-
-    --shadow-button-default-hover: var(--shadow-button-default-hover);
+	--color-button-default-hover: var(--button-default-hover);
+    --color-button-primary-hover: var(--button-primary-hover);
+    --color-button-ghost-hover: var(--button-ghost-hover);
+    --color-button-secondary-hover: var(--button-secondary-hover);
+    --color-button-danger-hover: var(--button-danger-hover);
+    --color-button-outline-hover: var(--button-outline-hover);
 
 	--shadow-mini: var(--shadow-mini);
 	--shadow-mini-inset: var(--shadow-mini-inset);
@@ -358,4 +368,25 @@ pre.shiki {
 
 .brand-link {
     @apply text-brand hover:underline
+}
+
+/* shiki themes */
+html.dark .shiki,
+html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+html.light .shiki,
+html.light .shiki span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
 }

@@ -15,6 +15,7 @@
     })
     export type ProgressSize = VariantProps<typeof progressVariants>["size"]
 </script>
+
 <script lang="ts">
     import type { ComponentProps } from "svelte"
     import { Progress, useId } from "bits-ui"

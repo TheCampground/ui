@@ -1,15 +1,21 @@
 <script lang="ts">
-	import { afterNavigate } from "$app/navigation"
+    import { afterNavigate } from "$app/navigation"
+    import { ModeWatcher } from "mode-watcher"
+    import { Noise } from "$lib/index.ts"
+
 	import "../app.css"
     import "@fontsource-variable/space-grotesk"
 
 	let { children } = $props()
 
-   	afterNavigate((nav) => {
+   	afterNavigate(() => {
         document.querySelectorAll("main").forEach((el) => {
             el.scrollTo({ top: 0 })
         })
    	})
 </script>
+
+<ModeWatcher defaultTheme="light" defaultMode="light" themeStorageKey="campground-ui-theme" />
+<Noise intensity="low" animated scale={0.75} />
 
 {@render children?.()}

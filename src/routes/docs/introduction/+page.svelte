@@ -3,10 +3,6 @@
 </script>
 
 <div class="w-full flex flex-col gap-10">
-    <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-bold">Introduction</h1>
-        <p class="text-foreground-alt">A collection of themed UI components.</p>
-    </div>
     <p>
         campground/ui is a collection of themed components built for
         <a class="link" href="https://thecampground.dev" target="_blank">@TheCampground</a>, built with accessibility in mind.
