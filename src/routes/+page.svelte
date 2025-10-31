@@ -41,7 +41,7 @@
                 projects.
             </p>
             <Button variant="primary" href="/docs/introduction" class="gap-2">
-                <span class="rounded-sm border font-mono text-xs leading-none size-5 flex items-center justify-center">S</span>
+                <span class="rounded-sm border dark:border-brand-foreground/40 font-mono text-xs leading-none size-4 flex items-center justify-center">S</span>
                 Get Started
             </Button>
         </div>

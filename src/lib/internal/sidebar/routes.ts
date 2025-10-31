@@ -631,10 +631,9 @@ export const components: ComponentsRoute = {
         {
             id: "noise",
             name: "Noise",
-            description: "A noise / grain overlay to add depth to the page",
+            description: "A static noise / film grain overlay to add depth to the page",
             examples: [
                 { file: "noise", filename: "+layout.svelte" },
-                { file: "noise-static", filename: "+layout.svelte", title: "Static", description: "If you don't want the noise to be animated, you can pass the prop <code>animated={false}</code> to the Noise component." }
             ],
             props: [
                 {
@@ -647,6 +646,12 @@ export const components: ComponentsRoute = {
                             typeDef: NoiseIntensity,
                             default: "low",
                             description: "The intensity of the noise effect"
+                        },
+                        {
+                            property: "class",
+                            type: "string",
+                            default: "",
+                            description: "Additional tailwind classes for the noise component"
                         }
                     ]
                 }

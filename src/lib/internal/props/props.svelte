@@ -58,7 +58,9 @@
                                     <Separator class="my-0!" />
                                     <div class="flex flex-col w-full">
                                         <p class="text-sm font-medium">Description</p>
-                                        <p class="text-xs text-foreground-alt max-w-[calc(100vw-5rem)] whitespace-break-spaces">{item.description}</p>
+                                        <p class="text-xs text-foreground-alt max-w-[calc(100vw-5rem)] whitespace-break-spaces">
+                                            {@html item.description}
+                                        </p>
                                     </div>
                                 </div>
                             </Popover>
@@ -69,7 +71,7 @@
                         {@render callback(item)}
                     </td>
                     <td class="align-top text-start p-2 hidden lg:flex flex-col">
-                        <p class="text-sm">{item.description}</p>
+                        <p class="text-sm">{@html item.description}</p>
                         <p class="text-sm text-foreground-alt font-medium font-code">
                             Default:
                             {@render defaultProp(item)}
