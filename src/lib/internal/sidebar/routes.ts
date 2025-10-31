@@ -910,6 +910,123 @@ export const components: ComponentsRoute = {
             ]
         },
         {
+            id: "slider",
+            name: "Slider",
+            description: "Visually separates content or UI elements.",
+            examples: [
+                { file: "slider-single" },
+                { file: "slider-multiple", title: "Multiple", description: "A slider that allows multiple thumbs/values to be selected" },
+                { file: "slider-ticks", title: "Ticks", description: "Visible ticks on the slider track defined by the <code>step</code> value" }
+            ],
+            props: [
+                {
+                    component: "Slider",
+                    description: "The slider component.",
+                    items: [
+                        {
+                            property: "type",
+                            type: "enum",
+                            required: true,
+                            typeDef: "\"single\" | \"multiple\"",
+                            default: "",
+                            description: "The type of the slider. If set to <span class=\"text-brand\">'multiple'</span>, the slider will allow multiple thumbs and the <code>value</code> will be an array of numbers."
+                        },
+                        {
+                            property: "value",
+                            type: "number",
+                            bindable: true,
+                            default: "0",
+                            description: "The current value of the slider. If the <code>type</code> is set to <span class=\"text-brand\">'multiple'</span>, this should be an array of numbers and will default to an empty array."
+                        },
+                        {
+                            property: "ticks",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether to display ticks on the slider, controlled by the <code>step</code> prop."
+                        },
+                        {
+                            property: "onValueChange",
+                            type: "function",
+                            typeDef: `// type="single"
+(value: number) => void
+// type="multiple"
+(value: number[]) => void`,
+                            default: "",
+                            description: "A callback function called when the value state of the slider changes."
+                        },
+                        {
+                            property: "onValueCommit",
+                            type: "function",
+                            typeDef: `// type="single"
+(value: number) => void
+// type="multiple"
+(value: number[]) => void`,
+                            default: "",
+                            description: "A callback function called when the user finishes dragging the thumb and the value changes. This is different than the <code>onValueChange</code> callback because it waits until the user stops dragging before calling the callback, where the <code>onValueChange</code> callback is called immediately after the user starts dragging."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the switch is disabled."
+                        },
+                        {
+                            property: "max",
+                            type: "number",
+                            default: "100",
+                            description: "The maximum value of the slider."
+                        },
+                        {
+                            property: "min",
+                            type: "number",
+                            default: "0",
+                            description: "The minimum value of the slider."
+                        },
+                        {
+                            property: "orientation",
+                            type: "enum",
+                            typeDef: "\"horizontal\" | \"vertical\"",
+                            default: "horizontal",
+                            description: "The minimum value of the slider."
+                        },
+                        {
+                            property: "step",
+                            type: "union",
+                            typeDef: "number | number[]",
+                            default: "",
+                            description: "The step value of the slider. If a single number is provided, the slider will step by that number and use that number to generate the ticks (e.g. <code>step={1}</code> will generate ticks at <code>0, 1, 2, 3, ...</code>). If an array of numbers is provided, the slider will snap to those values (e.g. <code>step={[0, 4, 8, 16, 24]}</code>) and ticks will be generated at those values."
+                        },
+                        {
+                            property: "dir",
+                            type: "enum",
+                            typeDef: "\"ltr\" | \"rtl\"",
+                            default: "ltr",
+                            description: "The reading direction of the app."
+                        },
+                        {
+                            property: "autoSort",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether to automatically sort the values in the array when moving thumbs past one another. This is only applicable to the <span class=\"text-brand\">'multiple'</span> type."
+                        },
+                        {
+                            property: "thumbPositioning",
+                            type: "enum",
+                            typeDef: "\"exact\" | \"contain\"",
+                            default: "contain",
+                            description: "The positioning of the slider thumb. <span class=\"text-brand\">'contain'</span> will ensure that the thumb is always visible within the track, while <span class=\"text-brand\">'exact'</span> will ensure that the thumb is always at the same position relative to the track. For an SSR-friendly alternative to <code>thumbPositioning='contain'</code>, use the <code>trackPadding</code> prop to set the padding between the thumbs/first ticks and the edges of the track."
+                        },
+                        {
+                            property: "trackPadding",
+                            type: "number",
+                            default: "",
+                            description: "A percentage of the full track length to pad the start and end of the track. This is useful for creating a visual buffer between the thumbs or beginning/end ticks and the edges of the track. This is an SSR-friendly alternative to <code>thumbPositioning='contain'</code>."
+                        },
+                    ]
+                }
+            ]
+        },
+        {
             id: "switch",
             name: "Switch",
             description: "A toggle control that allows users to switch between \"on\" and \"off\" states.",
