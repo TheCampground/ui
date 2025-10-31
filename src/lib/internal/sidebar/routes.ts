@@ -519,7 +519,6 @@ export const components: ComponentsRoute = {
             id: "empty",
             name: "Empty",
             description: "Display an empty state",
-            new: true,
             examples: [
                 { file: "empty" }
             ],
