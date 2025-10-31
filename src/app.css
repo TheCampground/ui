@@ -333,7 +333,7 @@
 	}
 
 	::selection {
-        @apply bg-button-primary text-foreground;
+        @apply bg-brand text-brand-foreground;
 	}
 }
 
@@ -373,6 +373,10 @@ pre.shiki {
 
 :not(pre):not(.shiki) > code {
     @apply text-sm whitespace-break-spaces bg-foreground-alt/5 border px-1 py-px rounded-sm;
+}
+
+table #description code {
+    @apply text-xs! text-brand border-brand/20
 }
 
 .brand-link {

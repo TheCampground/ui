@@ -31,7 +31,7 @@
         <tbody>
             {#each items as item (item.property)}
                 <tr class="border-t">
-                    <td class="align-top text-start w-full lg:w-50 p-2 flex justify-between lg:justify-start items-center gap-1">
+                    <td class="align-top text-start w-full lg:w-50 p-2 flex justify-between lg:justify-start items-center gap-1" id="property">
                         <div class="flex items-center gap-1">
                             {@render property(item)}
                             {@render bindable(item)}
@@ -63,11 +63,11 @@
                             </Popover>
                         </span>
                     </td>
-                    <td class="align-top text-start w-60 p-2 text-sm font-medium font-code hidden lg:table-cell">
+                    <td class="align-top text-start w-60 p-2 text-sm font-medium font-mono hidden lg:table-cell" id="type">
                         {item.type}
                         {@render callback(item)}
                     </td>
-                    <td class="align-top text-start p-2 hidden lg:flex flex-col">
+                    <td class="align-top text-start p-2 hidden lg:flex flex-col" id="description">
                         <p class="text-sm">{@html item.description}</p>
                         <p class="text-sm text-foreground-alt font-medium font-code">
                             Default:
@@ -102,7 +102,7 @@
     {#if item.bindable}
         <code class={cn(
             hidden ? "hidden lg:block" : "block",
-            "text-xs! bg-button-primary/40! border-button-primary/80"
+            "text-xs! bg-button-primary/20! border-button-primary/50 text-brand"
         )}>
             $bindable
         </code>
