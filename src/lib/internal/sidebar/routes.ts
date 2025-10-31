@@ -1,4 +1,4 @@
-import { Compass, Sticker, type IconSource } from "@steeze-ui/phosphor-icons"
+import { Compass, PaintRoller, Sticker, type IconSource } from "@steeze-ui/phosphor-icons"
 
 import { progressVariants } from "@core/progress/index.ts"
 import { buttonVariants } from "@core/button/index.ts"
@@ -31,6 +31,12 @@ export const docs: DocsRoute = {
             description: "Learn how to get started using <code>campground/ui</code> in your app",
             id: "getting-started",
             icon: Compass
+        },
+        {
+            name: "Styling",
+            description: "The base styles needed to adopt <code>campground/ui</code> styling in your project. Useful if you are creating project specific components.",
+            id: "styling",
+            icon: PaintRoller
         }
     ]
 }
