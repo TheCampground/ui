@@ -13,9 +13,6 @@
     }
 
     let { component, description, items }: Props = $props()
-
-    let anchor = $state<HTMLElement>(null!)
-    let open = $state(false)
 </script>
 
 <div class="flex flex-col gap-4">
