@@ -1,10 +1,29 @@
 <script lang="ts">
     import { List, MoonStars, Sun } from "@steeze-ui/phosphor-icons"
     import { Campground, GitHub } from "@internal/icons/index.ts"
+	import { getCurrentRoute } from "@internal/utils.ts"
 	import { sidebar } from "@internal/stores/index.ts"
-	import { Button } from "@core/button/index.ts"
+	import { Button, type ButtonVariant } from "@core/button/index.ts"
 	import { Icon } from "@steeze-ui/svelte-icon"
     import { setMode, mode } from "mode-watcher"
+	import { page } from "$app/state"
+
+    function currentRoute(path: string): ButtonVariant {
+        return getCurrentRoute(page.url.pathname)?.path?.includes(path) ? "secondary" : "ghost"
+    }
+
+    let routes = [
+        {
+            name: "Docs",
+            path: "/docs",
+            variant: currentRoute("/docs")
+        },
+        {
+            name: "Components",
+            path: "/components",
+            variant: currentRoute("/components")
+        }
+    ]
 </script>
 
 <div class="w-full border-b p-3 flex items-center justify-between fixed left-0 top-0 backdrop-blur-lg z-45 bg-background/70">
@@ -16,13 +35,12 @@
             <Icon src={Campground} class="size-5 md:size-6 text-icon-brand" />
             <p class="text-lg md:text-xl font-bold">campground/ui</p>
         </Button>
-        <div class="hidden md:flex items-center">
-            <Button variant="link" href="/docs/introduction">
-                <p class="text-xs font-normal">Docs</p>
-            </Button>
-            <Button variant="link" href="/components">
-                <p class="text-xs font-normal">Components</p>
-            </Button>
+        <div class="hidden md:flex items-center gap-1">
+            {#each routes as route}
+                <Button variant={route.variant} size="small" class="rounded-full! h-6!" href={route.path}>
+                    <p class="text-xs font-normal">{route.name}</p>
+                </Button>
+            {/each}
         </div>
     </div>
     <div class="flex gap-1">

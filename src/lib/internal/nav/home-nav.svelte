@@ -10,9 +10,9 @@
     <div class="flex gap-4 items-center">
         <Button variant="link" href="/" class="gap-3">
             <Icon src={Campground} class="size-5 md:size-6 text-icon-brand" />
-            <p class="text-lg md:text-xl font-bold">campground/ui</p>
+            <p class="text-lg md:text-xl font-bold hidden md:block">campground/ui</p>
         </Button>
-        <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+        <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full flex items-center justify-center gap-1">
             <Button variant="secondary" size="small" class="rounded-full! h-6!" href="/">
                 <p class="text-xs font-normal">Home</p>
             </Button>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="flex gap-1">
-         <Button variant="ghost" size="icon" href="https://github.com/thecampground/ui" target="_blank">
+         <Button variant="ghost" size="icon" href="https://github.com/thecampground/ui" target="_blank" class="hidden md:flex">
             <Icon src={GitHub} class="size-4.5 text-icon-github" />
         </Button>
         <Button variant="ghost" size="icon" onclick={() => setMode(mode.current === "light" ? "dark" : "light")}>
