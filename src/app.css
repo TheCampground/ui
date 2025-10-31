@@ -52,10 +52,14 @@
 	--shadow-mini: 0px 1px 0px 1px rgba(0, 0, 0, 0.04);
 	--shadow-mini-inset: 0px 1px 0px 0px rgba(0, 0, 0, 0.04) inset;
 	--shadow-popover: 0px 7px 12px 3px hsla(var(--dark-10));
-	--shadow-kbd: 0px 2px 0px 0px rgba(0, 0, 0, 0.07);
 	--shadow-btn: 0px 1px 0px 1px rgba(0, 0, 0, 0.03);
 	--shadow-card: 0px 4px 0px 0px rgba(0, 0, 0, 0.03);
 	--shadow-date-field-focus: 0px 0px 0px 3px rgba(24, 24, 27, 0.17);
+
+	--shadow-kbd: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+    --shadow-kbd-primary: 0px 2px 0px 0px var(--button-primary);
+    --shadow-kbd-secondary: 0px 2px 0px 0px var(--button-secondary);
+    --shadow-kbd-danger: 0px 2px 0px 0px var(--button-danger);
 }
 
 .dark {
@@ -102,10 +106,14 @@
 	--shadow-mini: 0px 1px 0px 1px rgba(0, 0, 0, 0.3);
 	--shadow-mini-inset: 0px 1px 0px 0px rgba(0, 0, 0, 0.5) inset;
 	--shadow-popover: 0px 7px 12px 3px hsla(0deg 0% 0% / 30%);
-	--shadow-kbd: 0px 2px 0px 0px rgba(255, 255, 255, 0.07);
 	--shadow-btn: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
 	--shadow-card: 0px 2px 0px 1px rgba(0, 0, 0, 0.4);
 	--shadow-date-field-focus: 0px 0px 0px 3px rgba(244, 244, 245, 0.1);
+
+	--shadow-kbd: 0px 2px 0px 0px var(--color-brand-foreground);
+    --shadow-kbd-primary: 0px 2px 0px 0px var(--button-primary);
+    --shadow-kbd-secondary: 0px 2px 0px 0px var(--button-secondary);
+    --shadow-kbd-danger: 0px 2px 0px 0px var(--button-danger);
 }
 
 @theme inline {
@@ -152,10 +160,13 @@
 	--shadow-mini: var(--shadow-mini);
 	--shadow-mini-inset: var(--shadow-mini-inset);
 	--shadow-popover: var(--shadow-popover);
-	--shadow-kbd: var(--shadow-kbd);
 	--shadow-btn: var(--shadow-btn);
 	--shadow-card: var(--shadow-card);
 	--shadow-date-field-focus: var(--shadow-date-field-focus);
+	--shadow-kbd: var(--shadow-kbd);
+    --shadow-kbd-primary: var(--shadow-kbd-primary);
+    --shadow-kbd-secondary: var(--shadow-kbd-secondary);
+    --shadow-kbd-danger: var(--shadow-kbd-danger);
 
 	--text-xxs: 10px;
 

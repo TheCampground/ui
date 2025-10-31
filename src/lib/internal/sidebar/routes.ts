@@ -2,6 +2,7 @@ import { Compass, PaintRoller, Sticker, type IconSource } from "@steeze-ui/phosp
 
 import { progressVariants } from "@core/progress/index.ts"
 import { buttonVariants } from "@core/button/index.ts"
+import { keyboardVariants } from "@core/kbd/index.ts"
 import { noiseVariants } from "@core/noise/index.ts"
 
 export type DocsRouteItem = {
@@ -185,6 +186,8 @@ export type ComponentsRoute = {
 const ButtonVariants = Object.keys(buttonVariants.variants.variant).map(v => `"${v}"`).join(" | ")
 const ButtonSizes = Object.keys(buttonVariants.variants.size).map(v => `"${v}"`).join(" | ")
 const ProgressSizes = Object.keys(progressVariants.variants.size).map(v => `"${v}"`).join(" | ")
+const KeyboardVariants = Object.keys(keyboardVariants.variants.variant).map(v => `"${v}"`).join(" | ")
+const KeyboardSizes = Object.keys(keyboardVariants.variants.size).map(v => `"${v}"`).join(" | ")
 const NoiseIntensity = Object.keys(noiseVariants.variants.intensity).map(v => `"${v}"`).join(" | ")
 
 export const components: ComponentsRoute = {
@@ -601,6 +604,63 @@ export const components: ComponentsRoute = {
                             default: "left",
                             description: "The position of the icon"
                         },
+                    ]
+                }
+            ]
+        },
+        {
+            id: "kbd",
+            name: "Kbd",
+            description: "Displays a keyboard key.",
+            examples: [
+                { file: "kbd" },
+                { file: "kbd-button", title: "Button", description: "Example of a keyboard component inside a button" },
+                { file: "kbd-variants", title: "Variants", description: "The different Kbd variants", code: false },
+                { file: "kbd-sizes", title: "Sizes", description: "The different Kbd sizes", code: false }
+            ],
+            props: [
+                {
+                    component: "Kbd.Group",
+                    description: "A helper to group keyboard keys together",
+                    items: [
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The keys to render as children"
+                        }
+                    ]
+                },
+                {
+                    component: "Kbd.Key",
+                    description: "The keyboard component",
+                    items: [
+                        {
+                            property: "variant",
+                            type: "enum",
+                            typeDef: KeyboardVariants,
+                            default: "default",
+                            description: "The variant of keyboard key"
+                        },
+                        {
+                            property: "size",
+                            type: "enum",
+                            typeDef: KeyboardSizes,
+                            default: "default",
+                            description: "The size of the keyboard key"
+                        },
+                        {
+                            property: "hideOnMobile",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether the keyboard key should be hidden on mobile"
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content/key to render as a child"
+                        }
                     ]
                 }
             ]

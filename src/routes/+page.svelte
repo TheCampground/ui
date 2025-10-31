@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Separator from "@core/separator/separator.svelte"
+	import { Button, Kbd, Separator } from "$lib/index.ts"
 	import { Sparkle } from "@steeze-ui/phosphor-icons"
 	import { Footer } from "@internal/footer/index.ts"
     import { HomeNav } from "@internal/nav/index.ts"
-	import Button from "@core/button/button.svelte"
 	import { Icon } from "@steeze-ui/svelte-icon"
 	import { goto } from "$app/navigation"
 
@@ -41,7 +40,7 @@
                 projects.
             </p>
             <Button variant="primary" href="/docs/introduction" class="gap-2">
-                <span class="rounded-sm border dark:border-brand-foreground/40 font-mono text-xs leading-none size-4 flex items-center justify-center">S</span>
+                <Kbd.Key size="small">s</Kbd.Key>
                 Get Started
             </Button>
         </div>
