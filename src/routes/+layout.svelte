@@ -16,6 +16,6 @@
 </script>
 
 <ModeWatcher defaultTheme="light" defaultMode="light" themeStorageKey="campground-ui-theme" />
-<Noise intensity="low" />
+<Noise intensity="medium" />
 
 {@render children?.()}
