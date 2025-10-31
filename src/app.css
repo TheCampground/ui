@@ -42,6 +42,9 @@
     --button-outline-hover:	hsl(33, 52%, 92%);
     --button-ghost-hover: hsl(33, 52%, 92%);
 
+    --icon-brand: hsl(12 6% 15%);
+    --icon-github: hsl(213, 13%, 16%);
+
 	/* black */
 	--contrast: hsl(0 0% 0%);
 
@@ -92,6 +95,9 @@
     --button-outline-hover:	hsl(0 0% 10%);
     --button-ghost-hover: hsl(0 0% 10%);
 
+    --icon-brand: hsl(48, 50%, 92%);
+    --icon-github: hsl(0 0 100%);
+
 	/* Shadows */
 	--shadow-mini: 0px 1px 0px 1px rgba(0, 0, 0, 0.3);
 	--shadow-mini-inset: 0px 1px 0px 0px rgba(0, 0, 0, 0.5) inset;
@@ -139,6 +145,9 @@
     --color-button-secondary-hover: var(--button-secondary-hover);
     --color-button-danger-hover: var(--button-danger-hover);
     --color-button-outline-hover: var(--button-outline-hover);
+
+    --color-icon-brand: var(--icon);
+    --color-icon-github: var(--icon-github);
 
 	--shadow-mini: var(--shadow-mini);
 	--shadow-mini-inset: var(--shadow-mini-inset);

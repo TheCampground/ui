@@ -1,17 +1,13 @@
 <script>
+	import { Campground } from "@internal/icons/index.ts"
 	import { Button } from "@core/button/index.ts"
-    import { mode } from "mode-watcher"
+	import { Icon } from "@steeze-ui/svelte-icon"
 </script>
 
 <div class="w-full p-5 flex items-center justify-between backdrop-blur-sm bg-background/50 border-t">
     <div class="flex items-center text-sm gap-2">
         <Button variant="ghost" size="icon" href="/">
-            <img
-                src="/favicon{mode.current === "light" ? "-dark" : ""}.png"
-                class="size-5 md:size-6 select-none pointer-events-none"
-                draggable="false"
-                alt=""
-            />
+            <Icon src={Campground} class="size-5 md:size-6 text-icon-brand" />
         </Button>
         &copy; 2025 - Built on the Campground
     </div>

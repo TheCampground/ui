@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { List, MoonStars, Sun } from "@steeze-ui/phosphor-icons"
+    import { List, MoonStars, Sun } from "@steeze-ui/phosphor-icons"
+    import { Campground, GitHub } from "@internal/icons/index.ts"
 	import { sidebar } from "@internal/stores/index.ts"
 	import { Button } from "@core/button/index.ts"
 	import { Icon } from "@steeze-ui/svelte-icon"
@@ -12,12 +13,7 @@
             <Icon src={List} theme="bold" class="size-5" />
         </Button>
         <Button variant="link" href="/" class="gap-3">
-            <img
-                src="/favicon{mode.current === "light" ? "-dark" : ""}.png"
-                class="size-5 md:size-6 select-none pointer-events-none"
-                draggable="false"
-                alt=""
-            />
+            <Icon src={Campground} class="size-5 md:size-6 text-icon-brand" />
             <p class="text-lg md:text-xl font-bold">campground/ui</p>
         </Button>
         <div class="hidden md:flex items-center">
@@ -31,12 +27,7 @@
     </div>
     <div class="flex gap-1">
         <Button variant="ghost" size="icon" href="https://github.com/thecampground/ui" target="_blank">
-            <img
-                src="/github_{mode.current === "light" ? "dark" : "light"}.png"
-                class="size-5 select-none pointer-events-none"
-                draggable="false"
-                alt=""
-            />
+            <Icon src={GitHub} class="size-4.5 text-icon-github" />
         </Button>
         <Button variant="ghost" size="icon" onclick={() => setMode(mode.current === "light" ? "dark" : "light")}>
             <Icon src={mode.current === "dark" ? Sun : MoonStars} theme="bold" class="min-w-5 min-h-5 max-w-5 max-h-5 pointer-events-none group-hover:text-primary transition-all" />
