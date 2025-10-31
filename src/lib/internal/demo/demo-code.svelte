@@ -14,6 +14,7 @@
             navigator.clipboard.writeText(code)
             copying = true
             await delay(2000)
+            copying = false
         } catch (error) {
             console.log(error)
             copying = false
@@ -31,6 +32,7 @@
             size="icon"
             class="size-8 mr-1"
             onclick={copyToClipboard}
+            disabled={copying}
         >
             <Icon src={copying ? Check : Copy} theme="bold" class="size-4" />
         </Button>
