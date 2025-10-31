@@ -772,6 +772,116 @@ export const components: ComponentsRoute = {
             ]
         },
         {
+            id: "radio-group",
+            name: "Radio Group",
+            description: "Groups multiple radio items under a common name for form submission.",
+            examples: [
+                { file: "radio-group" },
+                { file: "radio-group-props", title: "Props", description: "Optionally you can provide the radio group items as a prop instead of via <code>RadioGroup.Item</code> children" }
+            ],
+            props: [
+                {
+                    component: "RadioGroup.Root",
+                    description: "The radio group component used to group radio items under a common name for form submission.",
+                    items: [
+                        {
+                            property: "value",
+                            bindable: true,
+                            type: "string",
+                            default: "",
+                            description: "The value of the currently selected radio item. You can bind to this value to control the radio group's value from outside the component."
+                        },
+                        {
+                            property: "items",
+                            type: "Array",
+                            typeDef: `{
+    value: string
+    label: string
+    disabled?: boolean
+}[]`,
+                            default: "",
+                            description: "The list of items if you are using the <code>items</code> prop instead of passing <code>RadioGroup.Item</code> children."
+                        },
+                        {
+                            property: "onValueChange",
+                            type: "function",
+                            typeDef: "(value: string) => void",
+                            default: "",
+                            description: "A callback that is fired when the radio group's value changes."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the radio group is disabled. This prevents the user from interacting with it."
+                        },
+                        {
+                            property: "required",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the radio group is required."
+                        },
+                        {
+                            property: "name",
+                            type: "string",
+                            default: "",
+                            description: "The name of the radio group used in form submission. If provided, a hidden input element will be rendered to submit the value of the radio group."
+                        },
+                        {
+                            property: "loop",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not the tabs are disabled."
+                        },
+                        {
+                            property: "orientation",
+                            type: "enum",
+                            typeDef: "\"horizontal\" | \"vertical\"",
+                            default: "vertical",
+                            description: "The orientation of the radio group. This will determine how keyboard navigation will work within the component."
+                        },
+                        {
+                            property: "readonly",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the radio group is readonly. When readonly, users can focus and navigate through items but cannot change the value."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the label as a child"
+                        },
+                    ]
+                },
+                {
+                    component: "RadioGroup.Item",
+                    description: "An radio item, which must be a child of the <code>RadioGroup.Root</code> component.",
+                    items: [
+                        {
+                            property: "value",
+                            required: true,
+                            type: "string",
+                            default: "",
+                            description: "The value of the radio item. This should be unique for each radio item in the group."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether the radio item is disabled."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             id: "separator",
             name: "Separator",
             description: "Visually separates content or UI elements.",
@@ -916,7 +1026,7 @@ export const components: ComponentsRoute = {
                             property: "children",
                             type: "Snippet",
                             default: "",
-                            description: "The content of the label as a child"
+                            description: "The content of the tabs component as a child"
                         },
                     ]
                 },
@@ -953,7 +1063,7 @@ export const components: ComponentsRoute = {
                             property: "children",
                             type: "Snippet",
                             default: "",
-                            description: "The content of the label as a child"
+                            description: "The content of the trigger as a child"
                         },
                     ]
                 },
@@ -972,7 +1082,7 @@ export const components: ComponentsRoute = {
                             property: "children",
                             type: "Snippet",
                             default: "",
-                            description: "The content of the label as a child"
+                            description: "The content of the tab content as a child"
                         },
                     ]
                 }
