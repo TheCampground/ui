@@ -29,7 +29,7 @@
     }: WithoutChildrenOrChild<Checkbox.RootProps> & (PropsAsSnippet | PropsAsParam) = $props()
 </script>
 
-<Label.Root for={forId} bind:ref class={cn("text-sm", restProps.disabled && "opacity-60!")}>
+<Label.Root for={forId} bind:ref class={cn("text-sm", restProps.disabled && "opacity-60! pointer-events-none!")}>
     {#if label}
         {label}
     {:else}
