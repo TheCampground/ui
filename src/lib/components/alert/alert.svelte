@@ -1,23 +1,45 @@
+<script lang="ts" module>
+    import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements"
+    import type { IconSource } from "@steeze-ui/phosphor-icons"
+    import { type VariantProps, tv } from "tailwind-variants"
+    import { cn, type WithElementRef } from "$lib/utils.js"
+	import type { Snippet } from "svelte"
 
-<div class="relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current bg-button-primary/10 text-button-primary">
-    <slot/>
-    <h3 class="col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight">Success! Your changes have been saved.</h3>
+    export const alertVariants = tv({
+        base: "flex gap-3 p-3 items-start rounded-lg w-full text-sm leading-4.5",
+        variants: {
+            variant: {
+                default: "bg-brand/30 dark:bg-brand/10 border border-brand/60 dark:border-brand/40 text-brand-foreground dark:text-brand",
+                success: "border border-success/60 dark:border-success/40 bg-success/30 dark:bg-success/10 text-brand-foreground dark:text-success",
+                info: "border border-info/60 dark:border-info/40 bg-info/30 dark:bg-info/10 text-brand-foreground dark:text-info",
+                secondary: "border border-button-secondary bg-button-secondary/60 dark:bg-button-secondary/20 text-text dark:text-foreground-alt",
+                danger: "border border-button-danger/40 bg-button-danger/10 text-button-danger",
+            }
+        },
+        defaultVariants: {
+            variant: "default"
+        }
+    })
 
-    <p class="col-start-2">
-        This is an alert with an icon, title, and description.
-    </p>
-</div>
+    export type AlertVariant = VariantProps<typeof alertVariants>["variant"]
 
-<div class="relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current bg-button-danger/10 text-button-danger">
-    <slot/>
-    <h3 class="col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight">Unable to process your changes.</h3>
+    export type AlertProps = WithElementRef<HTMLButtonAttributes> &
+		WithElementRef<HTMLAnchorAttributes> & {
+			variant?: AlertVariant,
+            children?: Snippet
+            icon?: IconSource
+		}
+</script>
 
-    <div class="col-start-2 inline-flex flex-col gap-2">
-        Please verify billing information and try again.
-        <ul style="list-style-type:disc;" class="ml-3">
-            <li>Check your card details</li>
-            <li>Ensure sufficent funds</li>
-            <li>Verify billing address</li>
-        </ul>
-    </div>
+<script lang="ts">
+	import { Icon } from "@steeze-ui/svelte-icon"
+
+    let { children, icon, variant }: AlertProps = $props()
+</script>
+
+<div class={cn(alertVariants({ variant }))}>
+    {#if icon}
+        <Icon src={icon} theme="bold" class="min-h-4.5 max-h-4.5 h-4.5 w-4.5 min-w-4.5 max-w-4.5" />
+    {/if}
+    {@render children?.()}
 </div>

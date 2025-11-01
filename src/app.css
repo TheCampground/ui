@@ -28,6 +28,8 @@
 	--line: hsl(0 0% 100%);
     --brand: hsl(31 96% 78%);
     --brand-foreground: hsl(12, 6%, 15%);
+    --success: hsl(149 91% 67%);
+    --info: hsl(205 69% 62%);
 
 	--text: hsl(12, 6%, 15%);
 
@@ -40,7 +42,7 @@
     --button-secondary-hover: hsl(111, 12%, 88%);
     --button-danger-hover: hsl(347 60% 45%);
     --button-outline-hover:	hsl(33, 52%, 92%);
-    --button-ghost-hover: hsl(33, 52%, 92%);
+    --button-ghost-hover: hsl(33, 45%, 90%);
 
     --icon-brand: hsl(12 6% 15%);
     --icon-github: hsl(213, 13%, 16%);
@@ -136,6 +138,8 @@
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-destructive: var(--destructive);
+	--color-success: var(--success);
+	--color-info: var(--info);
 	--color-tertiary: var(--tertiary);
 	--color-line: var(--line);
 	--color-contrast: var(--contrast);
