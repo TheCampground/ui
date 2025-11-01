@@ -1,6 +1,6 @@
 <script lang="ts">
     import AccordionDemo from "@internal/examples/accordion.svelte?raw"
-	import { ShikiHandler } from "@internal/shiki/index.ts"
+	import { Codeblock } from "@internal/codeblock/index.ts"
 	import { Separator } from "$lib/index.ts"
 </script>
 
@@ -13,7 +13,7 @@
     <div class="flex flex-col gap-2">
         <h1 class="text-3xl font-bold">Installation</h1>
         <p class="text-foreground-alt">Install campground/ui using your preferred package manager</p>
-        {@html ShikiHandler.codeToHtml("pnpm install @campground/ui", "shell")}
+        <Codeblock lang="shell" code="pnpm install @campground/ui" />
     </div>
     <Separator hidden />
     <div class="flex flex-col gap-2">
@@ -22,7 +22,7 @@
             After installing <code>campground/ui</code>, you can import and use the components in your Svelte files.
             Here's an example using
         </p>
-        {@html ShikiHandler.codeToHtml(AccordionDemo, "svelte")}
+        <Codeblock lang="svelte" code={AccordionDemo} />
     </div>
     <Separator hidden />
     <div class="flex flex-col gap-2">

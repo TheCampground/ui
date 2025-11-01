@@ -4,7 +4,6 @@
     import { Button } from "@core/button/index.ts"
 	import { Icon } from "@steeze-ui/svelte-icon"
 	import { delay } from "@internal/utils.ts"
-	import { cn } from "$lib/utils.ts"
 
     let { filename, lang, code } = $props()
     let copying = $state(false)
@@ -23,7 +22,7 @@
 </script>
 
 <div class="flex flex-col w-full text-sm" id="docs">
-    <div class="flex w-full justify-between items-center border-b">
+    <div class="flex w-full justify-between items-center border-b bg-button-ghost-hover dark:bg-background-alt">
         <div class="h-9 w-fit px-3 flex items-center justify-center select-none">
             <p class="text-sm font-semibold leading-none">{filename}</p>
         </div>
