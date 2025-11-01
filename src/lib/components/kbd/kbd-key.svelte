@@ -44,6 +44,6 @@
     }: KeyboardProps = $props()
 </script>
 
-<span class={cn(hideOnMobile && "hidden! md:flex!", keyboardVariants({ variant, size }))}>
+<kbd class={cn(hideOnMobile && "hidden! md:flex!", keyboardVariants({ variant, size }))}>
     {@render children?.()}
-</span>
+</kbd>

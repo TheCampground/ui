@@ -557,6 +557,15 @@ export const components: ComponentsRoute = {
             ]
         },
         {
+            id: "dropdown-menu",
+            name: "Dropdown Menu",
+            description: "",
+            examples: [
+                { file: "dropdown-menu" }
+            ],
+            props: []
+        },
+        {
             id: "empty",
             name: "Empty",
             description: "Display an empty state",

@@ -35,9 +35,6 @@
             <RadioGroup.Item {id} value={item.value} disabled={item.disabled}>
                 {item.label}
             </RadioGroup.Item>
-            <!-- <div class="flex items-center w-fit">
-                <Label for={id} disabled={item.disabled}>{item.label}</Label>
-            </div> -->
         {/each}
     {:else}
         {@render children?.()}

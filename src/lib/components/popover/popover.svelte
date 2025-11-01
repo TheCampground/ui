@@ -1,9 +1,8 @@
 
 <script lang="ts">
-    import type { Snippet } from "svelte";
-    import { Popover, type WithoutChild } from "bits-ui";
 	import { buttonVariants, type ButtonSize, type ButtonVariant } from "@core/button/button.svelte"
 	import { Icon, type IconSource } from "@steeze-ui/svelte-icon"
+    import { Popover, type WithoutChild } from "bits-ui"
 	import { cn } from "$lib/utils.ts"
 
     type PopoverWithTrigger = {
