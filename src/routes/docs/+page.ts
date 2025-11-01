@@ -1,4 +1,4 @@
-import { docs } from "@internal/sidebar/routes.ts"
+import { docs } from "@internal/routes/index.ts"
 import { redirect } from "@sveltejs/kit"
 
 export function load() {

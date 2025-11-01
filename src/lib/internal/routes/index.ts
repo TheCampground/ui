@@ -4,6 +4,7 @@ import { progressVariants } from "@core/progress/index.ts"
 import { buttonVariants } from "@core/button/index.ts"
 import { keyboardVariants } from "@core/kbd/index.ts"
 import { noiseVariants } from "@core/noise/index.ts"
+import { alertVariants } from "@core/alert/alert.svelte"
 
 export type DocsRouteItem = {
     name: string
@@ -189,6 +190,7 @@ const ProgressSizes = Object.keys(progressVariants.variants.size).map(v => `"${v
 const KeyboardVariants = Object.keys(keyboardVariants.variants.variant).map(v => `"${v}"`).join(" | ")
 const KeyboardSizes = Object.keys(keyboardVariants.variants.size).map(v => `"${v}"`).join(" | ")
 const NoiseIntensity = Object.keys(noiseVariants.variants.intensity).map(v => `"${v}"`).join(" | ")
+const AlertVariants = Object.keys(alertVariants.variants.variant).map(v => `"${v}"`).join(" | ")
 
 export const components: ComponentsRoute = {
     title: "Components",
@@ -300,6 +302,42 @@ export const components: ComponentsRoute = {
                             default: "",
                             description: "The description snippet to render. This is placed inside the AlertDialog as a child."
                         },
+                    ]
+                }
+            ]
+        },
+        {
+            id: "alert",
+            name: "Alert",
+            description: "Displays a callout for user attention.",
+            examples: [
+                { file: "alert" },
+                { file: "alert-variants", title: "Variants", description: "The different alert variants", code: false }
+            ],
+            props: [
+                {
+                    component: "Alert",
+                    description: "The alert component",
+                    items: [
+                        {
+                            property: "icon",
+                            type: "IconSource",
+                            default: "",
+                            description: "The icon inside of the alert"
+                        },
+                        {
+                            property: "variant",
+                            type: "enum",
+                            typeDef: AlertVariants,
+                            default: "default",
+                            description: "The variant of the alert"
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The content of the alert"
+                        }
                     ]
                 }
             ]

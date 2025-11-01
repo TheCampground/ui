@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PageButtons, PageButtonsSmall } from "@internal/page-buttons/index.ts"
-	import type { FlatComponents } from "@internal/sidebar/routes.ts"
+	import type { FlatComponents } from "@internal/routes/index.ts"
 	import { getCurrentRoute } from "@internal/utils.ts"
     import { Sidebar } from "@internal/sidebar/index.ts"
 	import { Props } from "@internal/props/index.ts"

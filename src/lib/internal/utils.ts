@@ -1,4 +1,4 @@
-import { routes, type RoutesFlatMap } from "@internal/sidebar/routes.ts"
+import { routes, type RoutesFlatMap } from "@internal/routes/index.ts"
 
 export const delay = (ms: number) => new Promise(res => setTimeout(res, ms))
 

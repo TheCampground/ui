@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { docs, components, type RouteItem } from "@internal/sidebar/routes.ts"
+    import { docs, components, type RouteItem } from "@internal/routes/index.ts"
     import { Sidebar } from "@internal/sidebar/index.ts"
     import { Nav } from "@internal/nav/index.ts"
     import { Separator } from "$lib/index.ts"

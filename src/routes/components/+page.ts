@@ -1,4 +1,4 @@
-import { components } from "@internal/sidebar/routes.ts"
+import { components } from "@internal/routes/index.ts"
 import { redirect } from "@sveltejs/kit"
 
 export function load() {

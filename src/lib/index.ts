@@ -2,6 +2,7 @@
 export { Accordion } from "./components/accordion/index.ts"
 export { Button, buttonVariants, type ButtonProps, type ButtonSize, type ButtonVariant } from "./components/button/index.ts"
 export { AlertDialog } from "./components/alert-dialog/index.ts"
+export { Alert, alertVariants, type AlertVariant, type AlertProps } from "./components/alert/index.ts"
 export { Card } from "./components/card/index.ts"
 export { Checkbox } from "./components/checkbox/index.ts"
 export { Dialog } from "./components/dialog/index.ts"
@@ -17,4 +18,3 @@ export { Separator } from "./components/separator/index.ts"
 export { Slider } from "./components/slider/index.ts"
 export { Switch } from "./components/switch/index.ts"
 export { Tabs } from "./components/tabs/index.ts"
-export { Alert } from "./components/alert/index.ts";

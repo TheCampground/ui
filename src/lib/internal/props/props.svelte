@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Prop } from "@internal/sidebar/routes.ts"
+	import type { Prop } from "@internal/routes/index.ts"
 	import { ShikiHandler } from "@internal/shiki/index.ts"
 	import { Separator } from "@core/separator/index.ts"
 	import { Info } from "@steeze-ui/phosphor-icons"

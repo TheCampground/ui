@@ -1,8 +1,8 @@
 <script lang="ts">
+    import { routes, type RoutesFlatMap } from "@internal/routes/index.ts"
 	import { clickOutside } from "@internal/actions/clickOutside.ts"
 	import { groupRoutesBySection } from "@internal/utils.ts"
 	import { SidebarSimple } from "@steeze-ui/phosphor-icons"
-    import { routes, type RoutesFlatMap } from "./routes.ts"
     import { sidebar } from "@internal/stores/index.ts"
 	import { Button } from "@core/button/index.ts"
 	import { Icon } from "@steeze-ui/svelte-icon"
