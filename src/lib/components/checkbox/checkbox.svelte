@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.ts"
-	import { Check, Minus, Tilde } from "@steeze-ui/phosphor-icons"
+	import { Check, X, Tilde } from "@steeze-ui/phosphor-icons"
 	import { Icon } from "@steeze-ui/svelte-icon"
+    import type { Snippet } from "svelte"
+	import { cn } from "$lib/utils.ts"
     import {
         Checkbox,
         Label,
         useId,
         type WithoutChildrenOrChild,
     } from "bits-ui"
-	import type { Snippet } from "svelte"
 
     type PropsAsSnippet = {
         label?: never
@@ -35,10 +35,10 @@
 <div class="flex items-center gap-2">
     <Checkbox.Root {id} bind:checked bind:ref {...restProps} class="disabled:opacity-60">
         {#snippet children({ checked, indeterminate })}
-            {@const icon = indeterminate ? Minus : checked ? Check : Tilde}
+            {@const icon = indeterminate ? Tilde : checked ? Check : X}
             <div class={cn(
                 "size-6 bg-foreground-alt/5 border rounded-lg flex items-center justify-center",
-                indeterminate ? "" : checked ? "bg-button-primary! border-button-primary-dark text-black" : "bg-button-primary/20 dark:text-button-primary"
+                indeterminate ? "" : "bg-button-primary! border-button-primary-dark text-black"
             )}>
                 <Icon src={icon} theme="bold" class="size-4" />
             </div>
