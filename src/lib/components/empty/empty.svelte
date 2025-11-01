@@ -25,7 +25,7 @@
     </span>
     <div class="flex flex-col gap-2 justify-center items-center">
         <div class="text-lg font-semibold tracking-tight">
-            {title}
+            {@html title}
         </div>
         <div class="text-foreground-alt text-sm">
             {@render description()}
