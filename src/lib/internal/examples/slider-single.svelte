@@ -8,4 +8,3 @@
     <Slider bind:value type="single" />
     <Slider value={35} type="single" disabled />
 </div>
-

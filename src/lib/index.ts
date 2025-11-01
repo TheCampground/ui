@@ -17,3 +17,4 @@ export { Separator } from "./components/separator/index.ts"
 export { Slider } from "./components/slider/index.ts"
 export { Switch } from "./components/switch/index.ts"
 export { Tabs } from "./components/tabs/index.ts"
+export { Alert } from "./components/alert/index.ts";
