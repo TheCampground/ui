@@ -335,6 +335,7 @@
 		@apply border-border;
 	}
 	html {
+        @apply bg-background;
 		-webkit-text-size-adjust: 100%;
 		font-variation-settings: normal;
 		scrollbar-color: var(--bg-muted);
@@ -396,6 +397,10 @@ table #description code {
 
 .brand-link {
     @apply text-brand hover:underline
+}
+
+code.required {
+    @apply bg-red-500/20! border-red-500! text-red-500!
 }
 
 /* shiki themes */

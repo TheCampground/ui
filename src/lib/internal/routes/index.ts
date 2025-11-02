@@ -170,6 +170,7 @@ type ComponentRouteItem = (DocsRouteItem & {
     id: string
     path?: string
     description: string
+    details?: string
     examples: Example[]
     props: ComponentProp[]
 })
@@ -551,6 +552,102 @@ export const components: ComponentsRoute = {
                             type: "Snippet",
                             default: "",
                             description: "The description snippet to render. This is placed inside the Dialog as a child."
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            id: "drawer",
+            name: "Drawer",
+            description: "A drawer component for displaying content or requesting user input on mobile or tablet devices.",
+            details: "drawer-details",
+            examples: [
+                { file: "drawer-trigger" },
+                {
+                    file: "drawer-no-trigger",
+                    title: "Trigger",
+                    description: "If you don't want to use a default trigger, you can optionally pass the prop <code>useTrigger={false}</code> to the Drawer component, then handle the state with your own component using <code>bind:open</code>."
+                }
+            ],
+            props: [
+                {
+                    component: "Drawer",
+                    description: "The drawer component.",
+                    items: [
+                        {
+                            property: "open",
+                            bindable: true,
+                            type: "boolean",
+                            default: "false",
+                            description: "The state of the drawer."
+                        },
+                        {
+                            property: "useTrigger",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not to use the default trigger."
+                        },
+                        {
+                            property: "trigger",
+                            type: "object",
+                            typeDef: `type Trigger = {
+    variant?: ${ButtonVariants}
+    size?: ${ButtonSizes}
+    text: string | IconSource
+}`,
+                            default: "",
+                            description: "The default trigger. This is <code class=\"required\">required</code> if <code>useTrigger</code> is <code>true</code>."
+                        },
+                        {
+                            property: "closeThreshold",
+                            type: "number",
+                            default: "",
+                            description: "Number between 0 and 1 that determines when the drawer should be closed."
+                        },
+                        {
+                            property: "scrollLockTimeout",
+                            type: "number",
+                            default: "500",
+                            description: "Duration in ms for which the drawer is not draggable after scrolling content inside of the drawer."
+                        },
+                        {
+                            property: "snapPoints",
+                            type: "number[]",
+                            default: "",
+                            description: "Array of numbers from 0 to 100 that corresponds to % of the screen a given snap point should take up. Should go from least visible. Example <code>[0.2, 0.5, 0.8]</code>. You can also use px values, which doesn't take screen height into account."
+                        },
+                        {
+                            property: "fadeFromIndex",
+                            type: "number",
+                            default: "",
+                            description: "Index of a <code>snapPoint</code> from which the overlay fade should be applied. Defaults to the last snap point."
+                        },
+                        {
+                            property: "direction",
+                            type: "enum",
+                            typeDef: `"top" | "bottom" | "left" | "right"`,
+                            default: "bottom",
+                            description: "Direction of the drawer."
+                        },
+                        {
+                            property: "shouldScaleBackground",
+                            type: "boolean",
+                            default: "false",
+                            description: "<code class=\"required\">DISABLED</code><br />Scale the background when the drawer is open."
+                        },
+                        {
+                            property: "backgroundColor",
+                            type: "enum",
+                            typeDef: `"top" | "bottom" | "left" | "right"`,
+                            default: "bottom",
+                            description: "<code class=\"required\">DISABLED</code><br />Background color of the body when the drawer is open and <code>shouldScaleBackground</code> is true."
+                        },
+                        {
+                            property: "data-vaul-no-drag",
+                            type: "data-attribute",
+                            default: "",
+                            description: "When interacting with an element with this data attribute, the drawer won't be dragged."
                         },
                     ]
                 }
