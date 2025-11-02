@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { BellSimple, CreditCard, GearSix, Moon, MoonStars, SignOut, Sun, UserCircle } from "@steeze-ui/phosphor-icons"
-    import { buttonVariants, DropdownMenu } from "$lib/index.ts"
+    import { DropdownMenu, Button } from "$lib/index.ts"
+
+    let open = $state(false)
+    let anchor = $state<HTMLElement>(null!)
 
     let options = $state({
         notifications: true,
@@ -8,11 +11,14 @@
     })
 </script>
 
-<DropdownMenu.Root open={false}>
-    <DropdownMenu.Trigger class={buttonVariants({ variant: "primary" })}>
-        Open Menu
-    </DropdownMenu.Trigger>
-    <DropdownMenu.Content sideOffset={4}>
+<div bind:this={anchor}>
+    <Button variant="outline" size="icon" class="p-px size-16 rounded-full!" onclick={() => open = !open}>
+        <img src="/TheCampsite.png" alt="" class="rounded-full" />
+    </Button>
+</div>
+
+<DropdownMenu.Root bind:open>
+    <DropdownMenu.Content {anchor}>
         <DropdownMenu.Item icon={UserCircle} keybind={["⌘", "P"]}>
             Profile
         </DropdownMenu.Item>

@@ -27,7 +27,7 @@
             {value}
         </div>
         {#if checked}
-            <span class="size-2 border-2 border-foreground rounded-full mr-1"></span>
+            <span class="size-2 border-2 group-data-highlighted:border-brand-foreground border-foreground rounded-full mr-1 transition-all"></span>
         {/if}
     {/snippet}
 </DropdownMenu.RadioItem>

@@ -3,18 +3,15 @@
     import { DropdownMenu } from "bits-ui"
 
     let {
-        open = $bindable(),
         children,
         class: className,
         ...restProps
-    }: DropdownMenu.RootProps & {
-        class?: string
-    } = $props()
+    }: DropdownMenu.TriggerProps & { class?: string } = $props()
 </script>
 
-<DropdownMenu.Root
-    bind:open
+<DropdownMenu.Trigger
     {...restProps}
+    class={className}
 >
     {@render children?.()}
-</DropdownMenu.Root>
+</DropdownMenu.Trigger>

@@ -249,7 +249,7 @@ export const components: ComponentsRoute = {
                 {
                     file: "alert-dialog-no-trigger",
                     title: "Trigger",
-                    description: "If you don't want to use a default trigger, you can optionally pass the prop <code>useTrigger={false}</code> to the Popover component, then handle the state with your own component using <code>bind:open</code>."
+                    description: "If you don't want to use a default trigger, you can optionally pass the prop <code>useTrigger={false}</code> to the AlertDialog component, then handle the state with your own component using <code>bind:open</code>."
                 }
             ],
             props: [
@@ -499,7 +499,7 @@ export const components: ComponentsRoute = {
                 {
                     file: "dialog-no-trigger",
                     title: "Trigger",
-                    description: "If you don't want to use a default trigger, you can optionally pass the prop <code>useTrigger={false}</code> to the Popover component, then handle the state with your own component using <code>bind:open</code>."
+                    description: "If you don't want to use a default trigger, you can optionally pass the prop <code>useTrigger={false}</code> to the Dialog component, then handle the state with your own component using <code>bind:open</code>."
                 }
             ],
             props: [
@@ -544,13 +544,13 @@ export const components: ComponentsRoute = {
                             property: "title",
                             type: "Snippet",
                             default: "",
-                            description: "The title snippet to render. This is placed inside the AlertDialog as a child."
+                            description: "The title snippet to render. This is placed inside the Dialog as a child."
                         },
                         {
                             property: "description",
                             type: "Snippet",
                             default: "",
-                            description: "The description snippet to render. This is placed inside the AlertDialog as a child."
+                            description: "The description snippet to render. This is placed inside the Dialog as a child."
                         },
                     ]
                 }
@@ -559,11 +559,696 @@ export const components: ComponentsRoute = {
         {
             id: "dropdown-menu",
             name: "Dropdown Menu",
-            description: "",
+            description: "Displays a menu of items that users can select from when triggered.",
             examples: [
-                { file: "dropdown-menu" }
+                { file: "dropdown-menu" },
+                {
+                    file: "dropdown-menu-no-trigger",
+                    title: "Trigger",
+                    description: "If you don't want to use a default trigger, you can handle the state with your own component using <code>bind:open</code>.<br />You will need to pass an <code>anchor</code> prop as a <code>HTMLElement</code> to the <code>DropdownMenu.Content</code> component so it knows where to position itself."
+                }
             ],
-            props: []
+            props: [
+                {
+                    component: "DropdownMenu.Root",
+                    description: "The root component which manages & scopes the state of the dropdown menu.",
+                    items: [
+                        {
+                            property: "open",
+                            bindable: true,
+                            type: "boolean",
+                            default: "false",
+                            description: "The open state of the menu."
+                        },
+                        {
+                            property: "onOpenChange",
+                            type: "function",
+                            typeDef: "(open: boolean) => void",
+                            default: "",
+                            description: "A callback function when the open state changes."
+                        },
+                        {
+                            property: "onOpenChangeComplete",
+                            type: "function",
+                            typeDef: "(open: boolean) => void",
+                            default: "",
+                            description: "A callback function called after the open state changes and all animations have completed."
+                        },
+                        {
+                            property: "dir",
+                            type: "enum",
+                            typeDef: "\"ltr\" | \"rtl\"",
+                            default: "ltr",
+                            description: "The reading direction of the app."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.Trigger",
+                    description: "The content displayed when the dropdown menu is open.",
+                    items: [
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the menu trigger is disabled."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.Content",
+                    description: "The content displayed when the dropdown menu is open.",
+                    items: [
+                        {
+                            property: "anchor",
+                            type: "HTMLElement",
+                            default: "",
+                            description: "The anchor element to position the dropdown menu if a custom trigger is used."
+                        },
+                        {
+                            property: "side",
+                            type: "enum",
+                            typeDef: "\"top\" | \"right\" | \"bottom\" | \"left\"",
+                            default: "bottom",
+                            description: "The preffered side of the anchor to render the floating element against when open. Will be reversed when collosions occur."
+                        },
+                        {
+                            property: "sideOffset",
+                            type: "number",
+                            default: "0",
+                            description: "The distance in pixels from the anchor to the floating element."
+                        },
+                        {
+                            property: "align",
+                            type: "enum",
+                            typeDef: "\"start\" | \"center\" | \"end\"",
+                            default: "start",
+                            description: "The preferred alignment of the anchor to render the floating element against when open. This may change when collisions occur."
+                        },
+                        {
+                            property: "alignOffset",
+                            type: "number",
+                            default: "0",
+                            description: "The distance in pixels from the anchor to the floating element."
+                        },
+                        {
+                            property: "arrowPadding",
+                            type: "number",
+                            default: "0",
+                            description: "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision."
+                        },
+                        {
+                            property: "avoidCollosions",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, overrides the <code>side</code> and <code>align</code> options to prevent collisions with the boundary edges."
+                        },
+                        {
+                            property: "collisionBoundary",
+                            type: "union",
+                            typeDef: "Element | null",
+                            default: "",
+                            description: "A boundary element or array of elements to check for collisions against."
+                        },
+                        {
+                            property: "collisionPadding",
+                            type: "union",
+                            typeDef: `type Side = "top" | "bottom" | "left" | "right"
+type CollisionPadding = number | Partial<Record<Side, number>>`,
+                            default: "0",
+                            description: "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision."
+                        },
+                        {
+                            property: "sticky",
+                            type: "enum",
+                            typeDef: `"partial" | "always"`,
+                            default: "partial",
+                            description: "The sticky behavior on the align axis. <code>'partial'</code> will keep the content in the boundary as long as the trigger is at least partially in the boundary whilst <code>'always'</code> will keep the content in the boundary regardless."
+                        },
+                        {
+                            property: "hideWhenDetached",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, hides the content when it is detached from the DOM. This is useful for when you want to hide the content when the user scrolls away."
+                        },
+                        {
+                            property: "updatePositionStrategy",
+                            type: "enum",
+                            typeDef: `"optimized" | "always"`,
+                            default: "optimized",
+                            description: "The strategy to use when updating the position of the content. When <code>'optimized'</code> the content will only be repositioned when the trigger is in the viewport. When <code>'always'</code> the content will be repositioned whenever the position changes."
+                        },
+                        {
+                            property: "strategy",
+                            type: "enum",
+                            typeDef: `"fixed" | "absolute"`,
+                            default: "fixed",
+                            description: "The positioning strategy to use for the floating element. When <code>'fixed'</code> the element will be positioned relative to the viewport. When <code>'absolute'</code> the element will be positioned relative to the nearest positioned ancestor."
+                        },
+                        {
+                            property: "preventScroll",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, prevents the body from scrolling when the content is open. This is useful when you want to use the content as a modal."
+                        },
+                        {
+                            property: "onEscapeKeydown",
+                            type: "function",
+                            typeDef: `(event: KeyboardEvent) => void`,
+                            default: "",
+                            description: "Callback fired when an escape keydown event occurs in the floating content. You can call <code>event.preventDefault()</code> to prevent the default behavior of handling the escape keydown event."
+                        },
+                        {
+                            property: "escapeKeydownBehaviour",
+                            type: "enum",
+                            typeDef: `"close" | "ignore" | "defer-otherwise-close" | "defer-otherwise-ignore"`,
+                            default: "close",
+                            description: "The behavior to use when an escape keydown event occurs in the floating content. <code>'close'</code> will close the content immediately. <code>'ignore'</code> will prevent the content from closing. <code>'defer-otherwise-close'</code> will defer to the parent element if it exists, otherwise it will close the content. <code>'defer-otherwise-ignore'</code> will defer to the parent element if it exists, otherwise it will ignore the interaction."
+                        },
+                        {
+                            property: "onInteractOutside",
+                            type: "function",
+                            typeDef: `(event: PointerEvent) => void`,
+                            default: "",
+                            description: "Callback fired when an outside interaction event occurs, which is a <code>pointerdown</code> event. You can call <code>event.preventDefault()</code> to prevent the default behavior of handling the outside interaction."
+                        },
+                        {
+                            property: "onFocusOutside",
+                            type: "function",
+                            typeDef: `(event: FocusEvent) => void`,
+                            default: "",
+                            description: "Callback fired when focus leaves the dismissible layer. You can call <code>event.preventDefault()</code> to prevent the default behavior on focus leaving the layer."
+                        },
+                        {
+                            property: "interactOutsideBehaviour",
+                            type: "enum",
+                            typeDef: `"close" | "ignore" | "defer-otherwise-close" | "defer-otherwise-ignore"`,
+                            default: "close",
+                            description: "The behavior to use when an interaction occurs outside of the floating content. <code>'close'</code> will close the content immediately. <code>'ignore'</code> will prevent the content from closing. <code>'defer-otherwise-close'</code> will defer to the parent element if it exists, otherwise it will close the content. <code>'defer-otherwise-ignore'</code> will defer to the parent element if it exists, otherwise it will ignore the interaction."
+                        },
+                        {
+                            property: "onOpenAutoFocus",
+                            type: "function",
+                            typeDef: `(event: Event) => void`,
+                            default: "",
+                            description: "Event handler called when auto-focusing the content as it is opened. Can be prevented."
+                        },
+                        {
+                            property: "onCloseAutoFocus",
+                            type: "function",
+                            typeDef: `(event: Event) => void`,
+                            default: "",
+                            description: "Event handler called when auto-focusing the content as it is closed. Can be prevented."
+                        },
+                        {
+                            property: "trapFocus",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not to trap the focus within the content when open."
+                        },
+                        {
+                            property: "preventOverflowTextSelection",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, prevents the text selection from overflowing the bounds of the element."
+                        },
+                        {
+                            property: "dir",
+                            type: "enum",
+                            typeDef: `"ltr" | "rtl"`,
+                            default: "ltr",
+                            description: "The reading direction of the app."
+                        },
+                        {
+                            property: "loop",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not to loop through the menu items in when navigating with the keyboard."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.Item",
+                    description: "A menu item within the dropdown menu.",
+                    items: [
+                        {
+                            property: "icon",
+                            type: "IconSource",
+                            default: "",
+                            description: "The icon to show in the dropdown menu item."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the menu trigger is disabled."
+                        },
+                        {
+                            property: "onSelect",
+                            type: "function",
+                            typeDef: `() => void`,
+                            default: "",
+                            description: "A callback that is fired when the menu item is selected."
+                        },
+                        {
+                            property: "closeOnSelect",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not the menu item should close when selected."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.CheckboxItem",
+                    description: "A menu item that can be controlled and toggled like a checkbox.",
+                    items: [
+                        {
+                            property: "icon",
+                            type: "IconSource",
+                            default: "",
+                            description: "The icon to show in the dropdown menu checkbox item."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the menu trigger is disabled."
+                        },
+                        {
+                            property: "checked",
+                            bindable: true,
+                            type: "boolean",
+                            default: "false",
+                            description: "The checked state of the checkbox."
+                        },
+                        {
+                            property: "onCheckedChange",
+                            type: "function",
+                            typeDef: `(checked: boolean) => void`,
+                            default: "",
+                            description: "A callback that is fired when the checked state changes."
+                        },
+                        {
+                            property: "indeterminate",
+                            type: "boolean",
+                            default: "false",
+                            description: "The indeterminate state of the checkbox."
+                        },
+                        {
+                            property: "onIndeterminateChange",
+                            type: "function",
+                            typeDef: `(indeterminate: boolean) => void`,
+                            default: "",
+                            description: "A callback that is fired when the indeterminate state changes."
+                        },
+                        {
+                            property: "onSelect",
+                            type: "function",
+                            typeDef: `() => void`,
+                            default: "",
+                            description: "A callback that is fired when the menu item is selected."
+                        },
+                        {
+                            property: "closeOnSelect",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not the menu item should close when selected."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.RadioGroup",
+                    description: "A group of radio menu items, where only one can be checked at a time.",
+                    items: [
+                        {
+                            property: "value",
+                            bindable: true,
+                            type: "string",
+                            default: "",
+                            description: "The value of the currently checked radio menu item."
+                        },
+                        {
+                            property: "onValueChange",
+                            type: "function",
+                            typeDef: `(value: string) => void`,
+                            default: "",
+                            description: "A callback that is fired when the radio group's value changes."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.RadioItem",
+                    description: "A menu item that can be controlled and toggled like a radio button. It must be a child of a <code>RadioGroup</code>.",
+                    items: [
+                        {
+                            property: "value",
+                            required: true,
+                            type: "string",
+                            default: "false",
+                            description: "The value of the radio item. When checked, the parent <code>RadioGroup</code>'s value will be set to this value."
+                        },
+                        {
+                            property: "icon",
+                            type: "IconSource",
+                            default: "",
+                            description: "The icon to show in the dropdown menu radio item."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the menu trigger is disabled."
+                        },
+                        {
+                            property: "onSelect",
+                            type: "function",
+                            typeDef: `() => void`,
+                            default: "",
+                            description: "A callback that is fired when the menu item is selected."
+                        },
+                        {
+                            property: "closeOnSelect",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not the menu item should close when selected."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.Separator",
+                    description: "A horizontal line to visually separate menu items.",
+                    items: []
+                },
+                {
+                    component: "DropdownMenu.Group",
+                    description: "A group of menu items.",
+                    items: [
+                        {
+                            property: "title",
+                            required: true,
+                            type: "string",
+                            default: "",
+                            description: "The label to use in the <code>DropdownMenu.GroupHeader</code> component inside the group."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.Sub",
+                    description: "A submenu belonging to the parent dropdown menu. Responsible for managing the state of the submenu.",
+                    items: [
+                        {
+                            property: "open",
+                            bindable: true,
+                            type: "boolean",
+                            default: "false",
+                            description: "The open state of the submenu."
+                        },
+                        {
+                            property: "onOpenChange",
+                            type: "function",
+                            typeDef: "(open: boolean) => void",
+                            default: "",
+                            description: "A callback function when the open state changes."
+                        },
+                        {
+                            property: "onOpenChangeComplete",
+                            type: "function",
+                            typeDef: "(open: boolean) => void",
+                            default: "",
+                            description: "A callback function called after the open state changes and all animations have completed."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.SubTrigger",
+                    description: "A menu item which when pressed or hovered, opens the submenu it is a child of.",
+                    items: [
+                        {
+                            property: "icon",
+                            type: "IconSource",
+                            default: "",
+                            description: "The icon to show in the submenu trigger."
+                        },
+                        {
+                            property: "disabled",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not the menu trigger is disabled."
+                        },
+                        {
+                            property: "openDelay",
+                            type: "number",
+                            default: "100",
+                            description: "The amount of time in ms from when the mouse enters the subtrigger until the submenu opens."
+                        },
+                        {
+                            property: "onSelect",
+                            type: "function",
+                            typeDef: `() => void`,
+                            default: "",
+                            description: "A callback that is fired when the menu item is selected."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+                {
+                    component: "DropdownMenu.SubContent",
+                    description: "The submenu content displayed when the parent submenu is open.",
+                    items: [
+                        {
+                            property: "anchor",
+                            type: "HTMLElement",
+                            default: "",
+                            description: "The anchor element to position the dropdown menu if a custom trigger is used."
+                        },
+                        {
+                            property: "side",
+                            type: "enum",
+                            typeDef: "\"top\" | \"right\" | \"bottom\" | \"left\"",
+                            default: "bottom",
+                            description: "The preffered side of the anchor to render the floating element against when open. Will be reversed when collosions occur."
+                        },
+                        {
+                            property: "sideOffset",
+                            type: "number",
+                            default: "0",
+                            description: "The distance in pixels from the anchor to the floating element."
+                        },
+                        {
+                            property: "align",
+                            type: "enum",
+                            typeDef: "\"start\" | \"center\" | \"end\"",
+                            default: "start",
+                            description: "The preferred alignment of the anchor to render the floating element against when open. This may change when collisions occur."
+                        },
+                        {
+                            property: "alignOffset",
+                            type: "number",
+                            default: "0",
+                            description: "The distance in pixels from the anchor to the floating element."
+                        },
+                        {
+                            property: "arrowPadding",
+                            type: "number",
+                            default: "0",
+                            description: "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision."
+                        },
+                        {
+                            property: "avoidCollosions",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, overrides the <code>side</code> and <code>align</code> options to prevent collisions with the boundary edges."
+                        },
+                        {
+                            property: "collisionBoundary",
+                            type: "union",
+                            typeDef: "Element | null",
+                            default: "",
+                            description: "A boundary element or array of elements to check for collisions against."
+                        },
+                        {
+                            property: "collisionPadding",
+                            type: "union",
+                            typeDef: `type Side = "top" | "bottom" | "left" | "right"
+type CollisionPadding = number | Partial<Record<Side, number>>`,
+                            default: "0",
+                            description: "The amount in pixels of virtual padding around the viewport edges to check for overflow which will cause a collision."
+                        },
+                        {
+                            property: "sticky",
+                            type: "enum",
+                            typeDef: `"partial" | "always"`,
+                            default: "partial",
+                            description: "The sticky behavior on the align axis. <code>'partial'</code> will keep the content in the boundary as long as the trigger is at least partially in the boundary whilst <code>'always'</code> will keep the content in the boundary regardless."
+                        },
+                        {
+                            property: "hideWhenDetached",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, hides the content when it is detached from the DOM. This is useful for when you want to hide the content when the user scrolls away."
+                        },
+                        {
+                            property: "updatePositionStrategy",
+                            type: "enum",
+                            typeDef: `"optimized" | "always"`,
+                            default: "optimized",
+                            description: "The strategy to use when updating the position of the content. When <code>'optimized'</code> the content will only be repositioned when the trigger is in the viewport. When <code>'always'</code> the content will be repositioned whenever the position changes."
+                        },
+                        {
+                            property: "strategy",
+                            type: "enum",
+                            typeDef: `"fixed" | "absolute"`,
+                            default: "fixed",
+                            description: "The positioning strategy to use for the floating element. When <code>'fixed'</code> the element will be positioned relative to the viewport. When <code>'absolute'</code> the element will be positioned relative to the nearest positioned ancestor."
+                        },
+                        {
+                            property: "preventScroll",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, prevents the body from scrolling when the content is open. This is useful when you want to use the content as a modal."
+                        },
+                        {
+                            property: "onEscapeKeydown",
+                            type: "function",
+                            typeDef: `(event: KeyboardEvent) => void`,
+                            default: "",
+                            description: "Callback fired when an escape keydown event occurs in the floating content. You can call <code>event.preventDefault()</code> to prevent the default behavior of handling the escape keydown event."
+                        },
+                        {
+                            property: "escapeKeydownBehaviour",
+                            type: "enum",
+                            typeDef: `"close" | "ignore" | "defer-otherwise-close" | "defer-otherwise-ignore"`,
+                            default: "close",
+                            description: "The behavior to use when an escape keydown event occurs in the floating content. <code>'close'</code> will close the content immediately. <code>'ignore'</code> will prevent the content from closing. <code>'defer-otherwise-close'</code> will defer to the parent element if it exists, otherwise it will close the content. <code>'defer-otherwise-ignore'</code> will defer to the parent element if it exists, otherwise it will ignore the interaction."
+                        },
+                        {
+                            property: "onInteractOutside",
+                            type: "function",
+                            typeDef: `(event: PointerEvent) => void`,
+                            default: "",
+                            description: "Callback fired when an outside interaction event occurs, which is a <code>pointerdown</code> event. You can call <code>event.preventDefault()</code> to prevent the default behavior of handling the outside interaction."
+                        },
+                        {
+                            property: "onFocusOutside",
+                            type: "function",
+                            typeDef: `(event: FocusEvent) => void`,
+                            default: "",
+                            description: "Callback fired when focus leaves the dismissible layer. You can call <code>event.preventDefault()</code> to prevent the default behavior on focus leaving the layer."
+                        },
+                        {
+                            property: "interactOutsideBehaviour",
+                            type: "enum",
+                            typeDef: `"close" | "ignore" | "defer-otherwise-close" | "defer-otherwise-ignore"`,
+                            default: "close",
+                            description: "The behavior to use when an interaction occurs outside of the floating content. <code>'close'</code> will close the content immediately. <code>'ignore'</code> will prevent the content from closing. <code>'defer-otherwise-close'</code> will defer to the parent element if it exists, otherwise it will close the content. <code>'defer-otherwise-ignore'</code> will defer to the parent element if it exists, otherwise it will ignore the interaction."
+                        },
+                        {
+                            property: "onOpenAutoFocus",
+                            type: "function",
+                            typeDef: `(event: Event) => void`,
+                            default: "",
+                            description: "Event handler called when auto-focusing the content as it is opened. Can be prevented."
+                        },
+                        {
+                            property: "onCloseAutoFocus",
+                            type: "function",
+                            typeDef: `(event: Event) => void`,
+                            default: "",
+                            description: "Event handler called when auto-focusing the content as it is closed. Can be prevented."
+                        },
+                        {
+                            property: "trapFocus",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether or not to trap the focus within the content when open."
+                        },
+                        {
+                            property: "preventOverflowTextSelection",
+                            type: "boolean",
+                            default: "true",
+                            description: "When <code>true</code>, prevents the text selection from overflowing the bounds of the element."
+                        },
+                        {
+                            property: "dir",
+                            type: "enum",
+                            typeDef: `"ltr" | "rtl"`,
+                            default: "ltr",
+                            description: "The reading direction of the app."
+                        },
+                        {
+                            property: "loop",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether or not to loop through the menu items in when navigating with the keyboard."
+                        },
+                        {
+                            property: "children",
+                            type: "Snippet",
+                            default: "",
+                            description: "The children content to render."
+                        }
+                    ]
+                },
+            ]
         },
         {
             id: "empty",
