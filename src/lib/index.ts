@@ -18,5 +18,6 @@ export { Progress, progressVariants, type ProgressSize } from "./components/prog
 export { RadioGroup } from "./components/radio-group/index.ts"
 export { Separator } from "./components/separator/index.ts"
 export { Slider } from "./components/slider/index.ts"
+export { Toaster } from "./components/sonner/index.ts"
 export { Switch } from "./components/switch/index.ts"
 export { Tabs } from "./components/tabs/index.ts"

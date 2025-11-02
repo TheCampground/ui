@@ -1916,6 +1916,85 @@ type CollisionPadding = number | Partial<Record<Side, number>>`,
             ]
         },
         {
+            id: "sonner",
+            name: "Sonner",
+            description: "An opinionated toast component for Svelte.",
+            examples: [
+                { file: "sonner" },
+            ],
+            details: "sonner-details",
+            props: [
+                {
+                    component: "Toaster",
+                    description: "The toaster component",
+                    items: [
+                        {
+                            property: "theme",
+                            type: "enum",
+                            typeDef: `"dark" | "light" | "system" | undefined`,
+                            default: "light",
+                            description: "The current theme of the toasts."
+                        },
+                        {
+                            property: "position",
+                            type: "enum",
+                            typeDef: `"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"`,
+                            default: "bottom-right",
+                            description: "The position where the toasts will appear."
+                        },
+                        {
+                            property: "expand",
+                            type: "boolean",
+                            default: "false",
+                            description: "Whether toasts will be expanded by default."
+                        },
+                        {
+                            property: "visibleToasts",
+                            type: "number",
+                            default: "3",
+                            description: "How many toasts can be visible when expanded."
+                        },
+                        {
+                            property: "toastOptions",
+                            type: "object",
+                            default: "",
+                            description: "The options to pass to the <code>Toaster</code> component. Read more about the options <a class=\"link\" href=\"https://github.com/wobsoriano/svelte-sonner?tab=readme-ov-file#styling\">here</a>."
+                        },
+                        {
+                            property: "closeButton",
+                            type: "boolean",
+                            default: "true",
+                            description: "Whether to display a close button on the toasts by default."
+                        },
+                        {
+                            property: "richColors",
+                            type: "boolean",
+                            default: "false",
+                            description: "Make error and success toasts use rich colors."
+                        },
+                        {
+                            property: "offset",
+                            type: "string",
+                            default: "",
+                            description: "Custom offset from the edges of the screen to apply to the toasts."
+                        },
+                        {
+                            property: "duration",
+                            type: "number",
+                            default: "3000",
+                            description: "How long in milliseconds the toasts will stay on the screen for."
+                        },
+                        {
+                            property: "hotkey",
+                            type: "string[]",
+                            default: "⌥/alt + T",
+                            description: "The keybind required to focus the toasts. You can override it by providing an array of <code>event.code</code> values for each key. For example: <code>hotkey={['KeyC']}</code>"
+                        },
+                    ]
+                }
+            ]
+        },
+        {
             id: "switch",
             name: "Switch",
             description: "A toggle control that allows users to switch between \"on\" and \"off\" states.",

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { afterNavigate } from "$app/navigation"
+    import { Noise, Toaster } from "$lib/index.ts"
     import { ModeWatcher } from "mode-watcher"
-    import { Noise } from "$lib/index.ts"
 
 	import "../app.css"
     import "@fontsource-variable/space-grotesk"
@@ -14,6 +14,8 @@
         })
    	})
 </script>
+
+<Toaster />
 
 <ModeWatcher defaultTheme="light" defaultMode="light" themeStorageKey="campground-ui-theme" />
 <Noise intensity="medium" />
