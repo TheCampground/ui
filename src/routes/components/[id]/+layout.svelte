@@ -19,6 +19,7 @@
         <div class="w-full xl:w-[60%] flex">
             <div class="w-full flex flex-col gap-8">
                 {@render Title()}
+                {@render Details()}
                 {@render Examples()}
                 {@render ComponentProps()}
                 <PageButtons />
@@ -36,6 +37,13 @@
         <p class="text-foreground-alt">{@html current.description}</p>
     </div>
     <Separator />
+{/snippet}
+
+{#snippet Details()}
+    {#if page.data.details}
+        {@render page.data.details?.()}
+        <Separator />
+    {/if}
 {/snippet}
 
 {#snippet Examples()}

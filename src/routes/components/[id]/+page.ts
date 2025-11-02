@@ -1,5 +1,6 @@
 import { components } from "@internal/routes/index.ts"
 import { error } from "@sveltejs/kit"
+import type { Snippet } from "svelte"
 
 export async function load({ params }) {
 
@@ -8,8 +9,14 @@ export async function load({ params }) {
     if (!route) throw error(404, "Component not found")
 
     let examples = []
+    let details: Snippet | null = null
 
     try {
+
+        if (route.details) {
+            let imported = await import(`@internal/examples/${route.details}.svelte`)
+            details = imported.default
+        }
 
         for (const example of route.examples) {
             let imported = await import(`@internal/examples/${example.file}.svelte`)
@@ -28,7 +35,7 @@ export async function load({ params }) {
             }
         }
 
-        return { examples }
+        return { examples, details }
 
     } catch (error) {
         console.error(error)
@@ -38,7 +45,8 @@ export async function load({ params }) {
                 filename: "404",
                 snippet: null,
                 raw: "No examples found for this component",
-            }]
+            }],
+            details: null
         }
     }
 
