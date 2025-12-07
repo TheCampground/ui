@@ -7,27 +7,26 @@ const config = {
 	extensions: [".svelte"],
 	preprocess: [vitePreprocess()],
 	kit: {
-        adapter: adapter({
-            out: "build",
-            precompress: true
-        }),
+		adapter: adapter({
+			out: "build",
+			precompress: true
+		}),
 		alias: {
-		    "@internal": resolve("./src/lib/internal"),
-			"@core": resolve("./src/lib/components"),
+			"@internal": resolve("./src/lib/internal"),
+			"@core": resolve("./src/lib/components")
 		},
-        experimental: {
-            remoteFunctions: true
-        }
+		experimental: {
+			remoteFunctions: true
+		}
 	},
-    compilerOptions: {
-        experimental: {
-            async: true
-        }
-    }
+	compilerOptions: {
+		experimental: {
+			async: true
+		}
+	}
 }
 
 export default config
-
 
 // import VesperLight from "./static/vesper-light.json" with { type: "json" }
 
