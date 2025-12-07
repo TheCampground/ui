@@ -1,6 +1,6 @@
 <script lang="ts">
     import { RadioGroup, type WithoutChildrenOrChild, useId } from "bits-ui"
-	import { Label } from "@core/label/index.ts"
+	import { Label } from "@core/label/index.js"
 	import type { Snippet } from "svelte"
 
     let {

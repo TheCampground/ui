@@ -4,7 +4,7 @@
 	import { fly } from "svelte/transition"
 	import type { Snippet } from "svelte"
     import { Drawer } from "vaul-svelte"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     type DrawerProps = {
         useTrigger: boolean

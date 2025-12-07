@@ -1,6 +1,6 @@
 <script lang="ts">
     import { RadioGroup as BitsRadioGroup, type WithoutChildrenOrChild, useId } from "bits-ui"
-    import { Label, RadioGroup } from "$lib/index.ts"
+    import { Label, RadioGroup } from "$lib/index.js"
 	import type { Snippet } from "svelte"
 
     export type RadioGroupItemProps = {

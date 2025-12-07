@@ -3,7 +3,7 @@
     import { Icon } from "@steeze-ui/svelte-icon"
 	import type { Snippet } from "svelte"
     import { Accordion } from "bits-ui"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     type AccordionProps = {
         value: string

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Slider, type WithoutChildren } from "bits-ui"
     import type { ComponentProps } from "svelte"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     type Props = WithoutChildren<ComponentProps<typeof Slider.Root>> & { ticks?: boolean }
 

@@ -3,8 +3,8 @@
 	import type { IconSource } from "@steeze-ui/phosphor-icons"
 	import { Icon } from "@steeze-ui/svelte-icon"
     import { DropdownMenu } from "bits-ui"
-	import { cn } from "$lib/utils.ts"
-	import { Kbd } from "$lib/index.ts"
+	import { cn } from "$lib/utils.js"
+	import { Kbd } from "$lib/index.js"
 
     let {
         children,

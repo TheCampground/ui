@@ -3,7 +3,7 @@
 	import { buttonVariants, type ButtonSize, type ButtonVariant } from "@core/button/button.svelte"
 	import { Icon, type IconSource } from "@steeze-ui/svelte-icon"
     import { Popover, type WithoutChild } from "bits-ui"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     type PopoverWithTrigger = {
         buttonText: string | IconSource

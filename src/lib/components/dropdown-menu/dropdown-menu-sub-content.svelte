@@ -2,7 +2,7 @@
 <script lang="ts">
 	import { fly } from "svelte/transition"
     import { DropdownMenu } from "bits-ui"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     let {
         children,

@@ -3,7 +3,7 @@
     import { buttonVariants, type ButtonSize, type ButtonVariant } from "@core/button/button.svelte"
     import { AlertDialog, type WithoutChild } from "bits-ui"
     import type { Snippet } from "svelte"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     type AlertDialogWithTrigger = {
         buttonText: string
@@ -67,4 +67,3 @@
         </AlertDialog.Content>
     </AlertDialog.Portal>
 </AlertDialog.Root>
-

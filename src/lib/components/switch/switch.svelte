@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
     import { Switch, Label, useId, type WithoutChildrenOrChild } from "bits-ui"
    	import type { Snippet } from "svelte"
 

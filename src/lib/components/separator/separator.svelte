@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Separator } from "bits-ui"
-    import { cn } from "$lib/utils.ts"
+    import { cn } from "$lib/utils.js"
     type Props = {
         orientation?: "horizontal" | "vertical"
         hidden?: boolean

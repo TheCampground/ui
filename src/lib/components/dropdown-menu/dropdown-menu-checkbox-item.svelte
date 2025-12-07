@@ -4,7 +4,7 @@
 	import { Icon } from "@steeze-ui/svelte-icon"
     import { DropdownMenu } from "bits-ui"
 	import type { Snippet } from "svelte"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     let {
         children,

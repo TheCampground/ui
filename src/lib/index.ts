@@ -1,23 +1,40 @@
 // Reexport your entry components here
-export { Accordion } from "./components/accordion/index.ts"
-export { Button, buttonVariants, type ButtonProps, type ButtonSize, type ButtonVariant } from "./components/button/index.ts"
-export { AlertDialog } from "./components/alert-dialog/index.ts"
-export { Alert, alertVariants, type AlertVariant, type AlertProps } from "./components/alert/index.ts"
-export { Card } from "./components/card/index.ts"
-export { Checkbox } from "./components/checkbox/index.ts"
-export { Drawer } from "./components/drawer/index.ts"
-export { DropdownMenu } from "./components/dropdown-menu/index.ts"
-export { Dialog } from "./components/dialog/index.ts"
-export { Empty } from "./components/empty/index.ts"
-export { Input } from "./components/input/index.ts"
-export { Kbd, keyboardVariants, type KeyboardProps, type KeyboardSize, type KeyboardVariant } from "./components/kbd/index.ts"
-export { Label } from "./components/label/index.ts"
-export { Noise, NoiseCanvas, noiseVariants, type NoiseIntensity } from "./components/noise/index.ts"
-export { Popover } from "./components/popover/index.ts"
-export { Progress, progressVariants, type ProgressSize } from "./components/progress/index.ts"
-export { RadioGroup } from "./components/radio-group/index.ts"
-export { Separator } from "./components/separator/index.ts"
-export { Slider } from "./components/slider/index.ts"
-export { Toaster } from "./components/sonner/index.ts"
-export { Switch } from "./components/switch/index.ts"
-export { Tabs } from "./components/tabs/index.ts"
+export { Accordion } from "./components/accordion/index.js"
+export {
+	Button,
+	buttonVariants,
+	type ButtonProps,
+	type ButtonSize,
+	type ButtonVariant
+} from "./components/button/index.js"
+export { AlertDialog } from "./components/alert-dialog/index.js"
+export {
+	Alert,
+	alertVariants,
+	type AlertVariant,
+	type AlertProps
+} from "./components/alert/index.js"
+export { Card } from "./components/card/index.js"
+export { Checkbox } from "./components/checkbox/index.js"
+export { Drawer } from "./components/drawer/index.js"
+export { DropdownMenu } from "./components/dropdown-menu/index.js"
+export { Dialog } from "./components/dialog/index.js"
+export { Empty } from "./components/empty/index.js"
+export { Input } from "./components/input/index.js"
+export {
+	Kbd,
+	keyboardVariants,
+	type KeyboardProps,
+	type KeyboardSize,
+	type KeyboardVariant
+} from "./components/kbd/index.js"
+export { Label } from "./components/label/index.js"
+export { Noise, NoiseCanvas, noiseVariants, type NoiseIntensity } from "./components/noise/index.js"
+export { Popover } from "./components/popover/index.js"
+export { Progress, progressVariants, type ProgressSize } from "./components/progress/index.js"
+export { RadioGroup } from "./components/radio-group/index.js"
+export { Separator } from "./components/separator/index.js"
+export { Slider } from "./components/slider/index.js"
+export { Toaster } from "./components/sonner/index.js"
+export { Switch } from "./components/switch/index.js"
+export { Tabs } from "./components/tabs/index.js"

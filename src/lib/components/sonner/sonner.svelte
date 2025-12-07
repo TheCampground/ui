@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner"
-	import { buttonVariants } from "@core/button/index.ts"
+	import { buttonVariants } from "@core/button/index.js"
     import { mode } from "mode-watcher"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
 
     let { closeButton = true, ...restProps }: SonnerProps = $props()
 </script>

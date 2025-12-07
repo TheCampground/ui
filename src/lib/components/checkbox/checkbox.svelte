@@ -2,7 +2,7 @@
 	import { Check, X, Tilde } from "@steeze-ui/phosphor-icons"
 	import { Icon } from "@steeze-ui/svelte-icon"
     import type { Snippet } from "svelte"
-	import { cn } from "$lib/utils.ts"
+	import { cn } from "$lib/utils.js"
     import {
         Checkbox,
         Label,
